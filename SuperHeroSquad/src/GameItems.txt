@@ -5,7 +5,6 @@ Consumable
 +250 HP
 8, 15, 12, 6
 
-
 2
 Attack Potion
 Holding this bottle makes you feel stronger already. Drink to consume the power.\
