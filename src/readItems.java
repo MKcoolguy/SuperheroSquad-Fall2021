@@ -22,6 +22,7 @@ public class readItems {
 			String itemDes = itemsArray[2];
 			String itemType =  itemsArray[3];
 			String itemPower = itemsArray[4];
+			//coommmennntt
 			
 			
 		
