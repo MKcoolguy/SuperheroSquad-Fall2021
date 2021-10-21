@@ -1,0 +1,47 @@
+M1
+Texas Toast Much Rectangle, Very Texas. Texas Toast
+Butter/Butter Body Slam
+100
+HP Potion
+
+M2
+Crazy Crawfish
+Also known as the Procambarus clarkii. This crawfish from Louisiana has outwitted all fisherman with its razor sharp claws.
+Chittin Claws/Crushing Grasp
+100
+Attack Potion
+
+M4
+Giant Georgia Peach
+A peach that has been forgotten from Harvest, it has grown to an unprecedented size. Not even Jack wishes to live in this peach.
+Peach Fuzz/ Fuzzball Frenzy
+500
+HP Potion
+
+M5
+The Unknown Soldier
+A lone ghost of a Soldier that roams the lands of Virginia.
+Bayonet/ Straight Thrust
+300
+Attack Potion
+
+M6
+Starving Alligator
+He is really hungry and angry. Hangry?
+Serrated Teeth/ Mega Chomp
+300
+HP Potion
+
+M7
+Mountain King
+Hailing from the mountains of West Virginia, He crushes any who trespass his lands.
+Great Hammer/ The Mountain Shaker
+500
+HP Potion, Attack Potion
+
+M8
+Plane of the First Ones
+With tattered wings and a battered body, The first in flight soars the skies of North Carolina.
+Razor Sharp Wings/Barrel Roll
+1000
+Plane Ticket
