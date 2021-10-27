@@ -1,5 +1,6 @@
 public class Rooms {
     //Room attributes
+    // Testing
     private String roomID;
     private String roomDesc;
     private boolean visitedRoom;
