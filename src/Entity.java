@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Entity {
 
     private int id;
@@ -6,7 +8,7 @@ public abstract class Entity {
     private int healthMax;
     private String desc;
     private int stength;
-    //private Map OR Arraylist<> inventory; need item class before I can initialize inventory
+    ArrayList<GameItem> inventory; //might discard in favor of hashmap
     private int entityLocation;
 
     public int getId() {
@@ -55,6 +57,14 @@ public abstract class Entity {
 
     public void setStength(int stength) {
         this.stength = stength;
+    }
+
+    public ArrayList<GameItem> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<GameItem> inventory) {
+        this.inventory = inventory;
     }
 
     public int getEntityLocation() {
