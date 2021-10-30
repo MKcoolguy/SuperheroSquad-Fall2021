@@ -62,11 +62,15 @@ public abstract class GameItem {
     }
 
     public void inspectItem(String item) {
-
+        for (int i = 0; i < getItems().size(); i++){
+            if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
+                System.out.println(getItems().get(i).getItemDesc());
+            }
+        }
     }
 
     public void dropItem(String item) {
-
+        
     }
 
     @Override
