@@ -24,4 +24,23 @@ public class Main {
             System.out.println("File not found.");
         }
     }
+    
+     public void readRoom() throws FileNotFoundException {
+    	Scanner scanner = new Scanner(new File("src/GamesRooms.txt"));
+    	while (scanner.hasNext()) {
+    		while (scanner.hasNextLine()) {
+                String roomNum = scanner.nextLine().trim();
+                if (roomNum.trim().equals("")) {
+                    roomNum = scanner.nextLine().trim();
+                }
+                String roomName = scanner.nextLine().trim();
+                String roomDesc = scanner.nextLine().trim();
+                String roomDirection = scanner.nextLine().trim();
+    	}
+    	
+    }
+    scanner.close();
+}
+    
+    
 }
