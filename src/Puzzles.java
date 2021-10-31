@@ -110,7 +110,7 @@ public class Puzzles {
         		cur_line_num++;
         	}
         }
-    	s.close();
+        s.close();
         
         return puzzles;
 	}
