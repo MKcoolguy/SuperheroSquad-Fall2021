@@ -41,6 +41,22 @@ public class Main {
     }
     scanner.close();
 }
+    public static void readMonster() throws FileNotFoundException {
+    	Scanner scanner = new Scanner(new File("src/Monsters.txt"));
+    	
+    		while (scanner.hasNextLine()) {
+                String monsterNum = scanner.nextLine().trim();
+                if (monsterNum.trim().equals("")) {
+                    monsterNum = scanner.nextLine().trim();
+   
+                }
+                String monsterName = scanner.nextLine().trim();
+                String monsterDesc = scanner.nextLine().trim();
+                int monsterHp = Integer.parseInt(scanner.nextLine().trim());
+                String monsterItemCarried = scanner.nextLine().trim();  // attack / Hp potion
+                
+    }
+  }
     
     
 }
