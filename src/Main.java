@@ -60,5 +60,25 @@ public class Main {
 			String monsterItemCarried = scanner.nextLine().trim();  // attack / Hp potion
 		}
 	}    
-    
+     public static void readPuzzle() throws FileNotFoundException {
+    	Scanner scanner = new Scanner(new File("src/Puzzles.txt"));
+    	while (scanner.hasNextLine()) {
+    		String puzzleNum = scanner.nextLine().trim();
+    		 if (puzzleNum.trim().equals("")) {
+                 puzzleNum = scanner.nextLine().trim();
+
+             }
+    		 String puzzleLocation = scanner.nextLine().trim();
+    		 String puzzleQuestion = scanner.nextLine().trim();
+    		 String puzzleAnswer = scanner.nextLine().trim();
+    		 String puzzleHint = scanner.nextLine().trim();
+    		 int attemptsAllowed = Integer.parseInt(scanner.nextLine().trim());
+    		 String outputForIncorrectAns = scanner.nextLine().trim();
+    		 // Y/N
+    		 String outputForCorrectAns = scanner.nextLine().trim();
+    		 String reward = scanner.nextLine().trim();
+    		 //hp number 
+    	}
+    	
+    }
 }
