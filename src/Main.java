@@ -81,4 +81,50 @@ public class Main {
     	}
     	
     }
+	// save and load
+	public static void saveGame() throws FileNotFoundException {
+		//using seralization 
+		//output stream to save
+		//object = room ,since everything is in the room
+		
+		FileOutputStream file = new FileOutputStream("saveGame.txt");  // need to use .Sav file
+		try {
+			ObjectOutputStream output = new ObjectOutputStream(file);
+		   output.flush();
+		   output.close();
+		   output.writeObject(room);
+		System.out.println("Game saved");
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		
+			e.printStackTrace();
+		}
+		
+		
+	}
+	public static void loadGame() throws FileNotFoundException {
+		//using seralization 
+		//input stream to save
+		//object = room ,since everything is in the room
+		
+		FileInputStream fileInput = new FileInputStream("saveGame.txt");  // need to use .Sav file
+		try {
+			ObjectInputStream input = new ObjectInputStream(fileInput);
+		   room = (Room) input.readObject();
+		   
+		   input.close();
+		   
+		System.out.println("Game loded");
+		
+		} catch(Exception e) {
+			System.out.println("can't load data");
+		}
+		
+		
+		
+		
+	}
+	
+	
 }
