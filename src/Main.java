@@ -81,6 +81,7 @@ public class Main {
     	}
     	
     }
+	static Room room;
 	// save and load
 	public static void saveGame() throws FileNotFoundException {
 		//using seralization 
