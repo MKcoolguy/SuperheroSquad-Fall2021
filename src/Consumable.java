@@ -18,8 +18,4 @@ public class Consumable {
     public void setConsumableType(String consumableType) {
         this.consumableType = consumableType;
     }
-    //consumeItem method makes more sense in the player class.
-    public void consumeItem(String item, int consumableEffect, String consumableType) {
-
-    }
 }

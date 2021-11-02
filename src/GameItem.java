@@ -9,7 +9,6 @@ public abstract class GameItem {
     private ArrayList<GameItem> items;
     private String itemLocation; //why not make this int?
 
-    Player player = new Player();
 
     public int getId() {
         return id;
@@ -57,45 +56,6 @@ public abstract class GameItem {
 
     public void setItemLocation(String itemLocation) {
         this.itemLocation = itemLocation;
-    }
-
-    public void pickupItem(String item) {
-        for (int i = 0; i < getItems().size(); i++){
-            if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
-                player.getInventory().add(getItems().get(i));
-                items.remove(getItems().get(i));
-                // need to set the item to false so that it is removed from the room.
-                for (i = 0; i < player.getInventory().size(); i++){
-                    if (item.equalsIgnoreCase(player.getInventory().get(i).getItemName())){
-                        System.out.println(player.getInventory().get(i).getItemName() + " has been picked up and added to your inventory");
-                    }
-                }
-            }
-        }
-    }
-
-    public void inspectItem(String item) {
-        for (int i = 0; i < getItems().size(); i++){
-            if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
-                System.out.println(getItems().get(i).getItemDesc());
-            }
-        }
-    }
-
-    public void dropItem(String item) {
-        for (int i = 0; i < player.getInventory().size(); i++){
-            if (item.equalsIgnoreCase(player.getInventory().get(i).getItemName())){
-                items.add(player.getInventory().get(i));
-                // need to set the item location to the room the player is in
-                player.getInventory().remove(i);
-                // need to set the item to true so that an item is added to the room the player is in.
-                for (i = 0; i < getItems().size(); i++){
-                    if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
-                        System.out.println(getItems().get(i).getItemName() + " has been dropped and removed from your inventory");
-                    }
-                }
-            }
-        }
     }
 
     @Override
