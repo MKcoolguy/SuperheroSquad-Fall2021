@@ -89,7 +89,7 @@ public class Rooms {
         this.west = west;
     }
 
-    public boolean isMonster() {
+    public boolean hasMonster() {
         return monster;
     }
 
@@ -97,7 +97,7 @@ public class Rooms {
         this.monster = monster;
     }
 
-    public boolean isItem() {
+    public boolean hasItem() {
         return item;
     }
 
@@ -105,7 +105,7 @@ public class Rooms {
         this.item = item;
     }
 
-    public boolean isPuzzle() {
+    public boolean hasPuzzle() {
         return puzzle;
     }
 
