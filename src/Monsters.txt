@@ -4,6 +4,7 @@ Texas Toast Much Rectangle, Very Texas. Texas Toast
 Butter/Butter Body Slam
 100
 HP Potion
+10
 
 M2
 Crazy Crawfish
@@ -11,6 +12,15 @@ Also known as the Procambarus clarkii. This crawfish from Louisiana has outwitte
 Chittin Claws/Crushing Grasp
 100
 Attack Potion
+14
+
+M3
+Lost Race Horse
+Bred to be the fastest race horse Kentucky has ever seen, The lost Race horse was too fast to be kept tamed. Now she roams freely and attacks any who cross her path.
+Iron Hooves/Swift Kick
+250
+HP Potion
+17
 
 M4
 Giant Georgia Peach
@@ -18,6 +28,7 @@ A peach that has been forgotten from Harvest, it has grown to an unprecedented s
 Peach Fuzz/ Fuzzball Frenzy
 500
 HP Potion
+4
 
 M5
 The Unknown Soldier
@@ -25,6 +36,7 @@ A lone ghost of a Soldier that roams the lands of Virginia.
 Bayonet/ Straight Thrust
 300
 Attack Potion
+16
 
 M6
 Starving Alligator
@@ -32,6 +44,7 @@ He is really hungry and angry. Hangry?
 Serrated Teeth/ Mega Chomp
 300
 HP Potion
+1
 
 M7
 Mountain King
@@ -39,6 +52,7 @@ Hailing from the mountains of West Virginia, He crushes any who trespass his lan
 Great Hammer/ The Mountain Shaker
 500
 HP Potion, Attack Potion
+18
 
 M8
 Plane of the First Ones
@@ -46,3 +60,4 @@ With tattered wings and a battered body, The first in flight soars the skies of 
 Razor Sharp Wings/Barrel Roll
 1000
 Plane Ticket
+20
