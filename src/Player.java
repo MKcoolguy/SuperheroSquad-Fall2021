@@ -1,7 +1,20 @@
+import yurpp.GameMap;
+
 public class Player extends Entity {
 
     private int hp;
     private boolean itemEquipped; //checks to see whether player has item equipped or not
+
+    private static int roomID;
+    GameMap map = new GameMap();
+
+    public static int getPlayerLocation(){
+        return roomID;
+    }
+
+    public static void setPlayerLocation(int room){
+        roomID = room;
+    }
 
     public int getHp() {
         return hp;
