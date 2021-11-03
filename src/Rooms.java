@@ -2,31 +2,37 @@ public class Rooms {
     //Room attributes
     // Testing
     private String roomID;
+    private String roomName;
     private String roomDesc;
-    private boolean visitedRoom;
-    private boolean item;
-    private boolean puzzle;
-    private boolean monster;
     private String north;
     private String south;
     private String east;
     private String west;
+    private boolean monster;
+    private boolean item;
+    private boolean puzzle;
+    private boolean visitedRoom;
+
 
     // Rooms constructor
-    public Rooms(String roomID, String roomDesc, boolean visitedRoom,boolean item, boolean puzzle, boolean monster, String north, String south, String east, String west) {
+
+    public Rooms(String roomID, String roomName, String roomDesc, String north, String south, String east, String west, boolean monster, boolean item, boolean puzzle, boolean visitedRoom) {
         this.roomID = roomID;
+        this.roomName = roomName;
         this.roomDesc = roomDesc;
-        this.visitedRoom = false;
-        this.item = item;
-        this.puzzle = puzzle;
-        this.monster = monster;
         this.north = north;
         this.south = south;
         this.east = east;
         this.west = west;
+        this.monster = monster;
+        this.item = item;
+        this.puzzle = puzzle;
+        this.visitedRoom = false;
     }
 
+
     //Rooms getters and setters
+
     public String getRoomID() {
         return roomID;
     }
@@ -35,44 +41,20 @@ public class Rooms {
         this.roomID = roomID;
     }
 
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
     public String getRoomDesc() {
         return roomDesc;
     }
 
     public void setRoomDesc(String roomDesc) {
         this.roomDesc = roomDesc;
-    }
-
-    public boolean isVisitedRoom() {
-        return visitedRoom;
-    }
-
-    public void setVisitedRoom(boolean visitedRoom) {
-        this.visitedRoom = visitedRoom;
-    }
-
-    public boolean hasItem() {
-        return item;
-    }
-
-    public void setItem(boolean item) {
-        this.item = item;
-    }
-
-    public boolean hasPuzzle() {
-        return puzzle;
-    }
-
-    public void setPuzzle(boolean puzzle) {
-        this.puzzle = puzzle;
-    }
-
-    public boolean hasMonster() {
-        return monster;
-    }
-
-    public void setMonster(boolean monster) {
-        this.monster = monster;
     }
 
     public String getNorth() {
@@ -107,4 +89,35 @@ public class Rooms {
         this.west = west;
     }
 
+    public boolean isMonster() {
+        return monster;
+    }
+
+    public void setMonster(boolean monster) {
+        this.monster = monster;
+    }
+
+    public boolean isItem() {
+        return item;
+    }
+
+    public void setItem(boolean item) {
+        this.item = item;
+    }
+
+    public boolean isPuzzle() {
+        return puzzle;
+    }
+
+    public void setPuzzle(boolean puzzle) {
+        this.puzzle = puzzle;
+    }
+
+    public boolean isVisitedRoom() {
+        return visitedRoom;
+    }
+
+    public void setVisitedRoom(boolean visitedRoom) {
+        this.visitedRoom = visitedRoom;
+    }
 }

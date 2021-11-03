@@ -1,5 +1,3 @@
-import yurpp.GameMap;
-
 public class Player extends Entity {
 
     private int hp;
@@ -32,7 +30,7 @@ public class Player extends Entity {
         this.itemEquipped = itemEquipped;
     }
 
-    public void pickupItem(String item) {
+    /*public void pickupItem(String item) {
         for (int i = 0; i < getItems().size(); i++){
             if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
                 player.getInventory().add(getItems().get(i));
@@ -45,17 +43,17 @@ public class Player extends Entity {
                 }
             }
         }
-    }
+    }*/
 
-    public void inspectItem(String item) {
+    /*public void inspectItem(String item) {
         for (int i = 0; i < getItems().size(); i++){
             if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
                 System.out.println(getItems().get(i).getItemDesc());
             }
         }
-    }
+    }*/
 
-    public void dropItem(String item) {
+    /*public void dropItem(String item) {
         for (int i = 0; i < player.getInventory().size(); i++){
             if (item.equalsIgnoreCase(player.getInventory().get(i).getItemName())){
                 items.add(player.getInventory().get(i));
@@ -69,7 +67,7 @@ public class Player extends Entity {
                 }
             }
         }
-    }
+    }*/
 
     public void equipItem(GameItem item) {
         if (item.getItemType().equalsIgnoreCase("equippable")) {

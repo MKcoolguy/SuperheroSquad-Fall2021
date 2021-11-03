@@ -1,5 +1,3 @@
-package yurpp;
-
 import java.util.ArrayList;
 
 public class GameMap {
@@ -13,6 +11,7 @@ public class GameMap {
     public static ArrayList<Rooms> getRooms(){
         return rooms;
     }
+
 
     public void getRoom(String direction){
         if (direction.equals("0")){

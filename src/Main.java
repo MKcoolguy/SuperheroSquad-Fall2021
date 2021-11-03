@@ -1,17 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import supertest.Map;
-import supertest.Player;
-import supertest.Rooms;
-import yurpp.GameMap;
 
 public class Main {
     public static void main(String[] args) {
         Player player = new Player();
-        File roomsFile = new File("GamesRooms.txt");
+
+        File roomsFile = new File("src/rooms.txt");
         Scanner roomsReader = null;
         try {
             roomsReader = new Scanner(roomsFile);
@@ -20,18 +15,25 @@ public class Main {
             System.exit(0);
             e.printStackTrace();
         }
-
+        //assigns each line with a variable
         while (roomsReader.hasNext()){
             String roomID = roomsReader.nextLine();
+            String roomName = roomsReader.nextLine();
             String roomDesc = roomsReader.nextLine();
-            String visitedRoomString = roomsReader.nextLine();
-            boolean visitedRoom = Boolean.parseBoolean(visitedRoomString);
             String north = roomsReader.nextLine();
             String south = roomsReader.nextLine();
             String east = roomsReader.nextLine();
             String west = roomsReader.nextLine();
+            String monsterString = roomsReader.nextLine();
+            boolean monster = Boolean.parseBoolean(monsterString);
+            String itemString = roomsReader.nextLine();
+            boolean item = Boolean.parseBoolean(itemString);
+            String puzzleString = roomsReader.nextLine();
+            boolean puzzle = Boolean.parseBoolean(puzzleString);
+            String visitedRoomString = roomsReader.nextLine();
+            boolean visitedRoom = Boolean.parseBoolean(visitedRoomString);
 
-            Rooms room = new Rooms(roomID, roomDesc, visitedRoom, north, south, east, west);
+            Rooms room = new Rooms(roomID,roomName,roomDesc,north,south,east,west,monster,item,puzzle,visitedRoom);
             GameMap.addRoom(room);
         }
 
@@ -40,7 +42,9 @@ public class Main {
         boolean playGame = true;
 
         while (playGame){
-            System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomDesc() + ". Which direction do you want to go? (N, S, E, W). To end the game, type quit.");
+            System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomName());
+            System.out.println(GameMap.getRooms().get(roomID).getRoomDesc());
+            System.out.println("Which direction do you want to go? N S E W?");
             String playerInput = sc.next();
             if (playerInput.equalsIgnoreCase("n") || playerInput.equalsIgnoreCase("north")){
                 String direction = GameMap.getRooms().get(roomID).getNorth();
@@ -72,7 +76,7 @@ public class Main {
     }
 
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		ArrayList<Puzzles> puzzles = Puzzles.loadPuzzlesFromFile("Puzzles.txt");
 		Puzzles.__debugView(puzzles);
 	}
@@ -187,12 +191,9 @@ public class Main {
 		
 		} catch(Exception e) {
 			System.out.println("can't load data");
-		}
+		}*/
 		
 		
 		
 		
-	}
-	
-	
 }
