@@ -1,5 +1,11 @@
-public class Rooms {
-    //Room attributes
+import java.io.Serializable;
+
+public class Rooms implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//Room attributes
     // Testing
     private String roomID;
     private String roomName;
