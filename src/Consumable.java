@@ -1,4 +1,4 @@
-public class Consumable {
+public class Consumable extends GameItem{
 
     private int consumableEffect;
     private String consumableType; //to determine whether its attack or HP potion

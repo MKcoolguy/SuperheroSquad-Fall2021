@@ -4,8 +4,8 @@ public abstract class GameItem {
 
     private int id;
     private String itemName;
-    private String itemType;
     private String itemDesc;
+    private String itemType; // Consumable or equippable type
     private ArrayList<GameItem> items;
     private String itemLocation; //why not make this int?
 

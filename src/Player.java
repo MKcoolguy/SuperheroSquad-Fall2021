@@ -1,6 +1,7 @@
 public class Player extends Entity {
 
     private int hp;
+    private boolean itemEquipped; //checks to see whether player has item equipped or not
 
     public int getHp() {
         return hp;
@@ -8,6 +9,14 @@ public class Player extends Entity {
 
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public boolean isItemEquipped() {
+        return itemEquipped;
+    }
+
+    public void setItemEquipped(boolean itemEquipped) {
+        this.itemEquipped = itemEquipped;
     }
 
     public void pickupItem(String item) {
@@ -49,21 +58,64 @@ public class Player extends Entity {
         }
     }
 
-    public void equipItem(String item) {
-        setStength();
-        //get item damage and set it as argument
-        System.out.println("You have equipped: " + item);
+    public void equipItem(GameItem item) {
+        if (item.getItemType().equalsIgnoreCase("equippable")) {
+            if (!isItemEquipped()) {
+                System.out.println("You have equipped: " + item.getItemName());
+                setItemEquipped(true);
+                //set effect here
+            }
+            else {
+                System.out.println("Unequip your current item before trying to equip " + item.getItemName());
+            }
+        }
+        else {
+            System.out.println("Cannot equip " + item.getItemName() + " because it is not of equippable type");
+        }
     }
 
     public void unequipItem(String item) {
-        setStength();
-        //set player default strength as argument
-        System.out.println("You have unequipped: " + item);
+        if (isItemEquipped()) {
+            System.out.println(item + " has been unequipped.");
+            //set effect here
+        }
+        else {
+            System.out.println("No item currently equipped.");
+        }
     }
 
-    public void consumeItem(String item, int consumableEffect, String consumableType) {
+    //consumeItem method corresponds to the "use" command
+    public void consumeItem(Player player, GameItem item) {
+        if (player.getInventory().contains(item)) {
+            if (item.getItemType().equalsIgnoreCase("consumable")) {
+                //setEffect here
+                player.getInventory().remove(item);
+            }
+            else {
+                System.out.println("This item can't be used since it's not a consumable.");
+            }
+        }
+        else {
+            System.out.println("Inventory does not contain: " + item.getItemName());
+        }
+    }
+
+    //drop method corresponds to the drop command
+    public void drop (Player player, GameItem item, GameMap map) {
+        if (player.getInventory().contains(item)) {
+            //add item to room and remove from inventory.
+        }
+        else {
+            System.out.println("Inventory does not contain " + item.getItemName() + ".");
+        }
+    }
+
+    //corresponds to the fight command, brings you to battle environment.
+    public void fight() {
 
     }
+
+
 
     @Override
     public int dealDamage() {

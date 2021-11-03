@@ -1,4 +1,4 @@
-public class Equippable {
+public class Equippable extends GameItem{
 
     private int equippableEffect;
 

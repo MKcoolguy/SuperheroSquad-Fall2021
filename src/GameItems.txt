@@ -34,7 +34,7 @@ Consumable
 6
 Gatorade
 Having a drink of Gatorade will surely boost your athletic powers.
--Consumabl
+Consumable
 +250 HP
 1
 
@@ -62,6 +62,6 @@ Consumable
 10
 Jazz Concert Ticket
 What a fun-filled adventure so far… You are invited for a mesmerizing and relaxing jazz concert...This will rev up your spirits
-Equippable
+Consumable
 +250HP
 13
