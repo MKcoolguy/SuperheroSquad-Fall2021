@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Player player = new Player();
-
         File roomsFile = new File("src/rooms.txt");
         Scanner roomsReader = null;
         try {
@@ -38,41 +36,68 @@ public class Main {
         }
 
         Scanner sc = new Scanner(System.in);
-        int roomID = 0;
-        boolean playGame = true;
+        String [] arrMainMenu = {"Start", "Reload", "Help", "Quit"};
+        UserInterface ui = new UserInterface("Welcome to adventure south", arrMainMenu);
 
-        while (playGame){
+        mainMenu(sc); // launches the main menu and game goes from there
+    }
+
+
+    //game starting menu
+    public static void mainMenu(Scanner sc) {
+        String playerInput = sc.next();
+        if (playerInput.equalsIgnoreCase("start")) {
+            startGame(sc);
+        }
+        else if (playerInput.equalsIgnoreCase("reload")){
+            //reload game feature goes here
+        }
+        else if (playerInput.equalsIgnoreCase("help")) {
+            // help feature
+        }
+        else if (playerInput.equalsIgnoreCase("quit")) {
+            sc.close();
+            System.out.println("Game aborted.");
+        }
+        else {
+            System.out.println("Not a valid command.");
+        }
+    }
+
+
+    //when user selects start game
+    public static void startGame(Scanner sc) {
+        Player player = new Player();
+        boolean playGame = true;
+        int roomID = 0;
+
+        while (playGame) {
             System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomName());
             System.out.println(GameMap.getRooms().get(roomID).getRoomDesc());
             System.out.println("Which direction do you want to go? N S E W?");
             String playerInput = sc.next();
-            if (playerInput.equalsIgnoreCase("n") || playerInput.equalsIgnoreCase("north")){
+
+            if (playerInput.equalsIgnoreCase("n") || playerInput.equalsIgnoreCase("north")) {
                 String direction = GameMap.getRooms().get(roomID).getNorth();
                 player.map.getRoom(direction);
-            }
-            else if (playerInput.equalsIgnoreCase("s") || playerInput.equalsIgnoreCase("south")){
+            } else if (playerInput.equalsIgnoreCase("s") || playerInput.equalsIgnoreCase("south")) {
                 String direction = GameMap.getRooms().get(roomID).getSouth();
                 player.map.getRoom(direction);
-            }
-            else if (playerInput.equalsIgnoreCase("e") || playerInput.equalsIgnoreCase("east")){
+            } else if (playerInput.equalsIgnoreCase("e") || playerInput.equalsIgnoreCase("east")) {
                 String direction = GameMap.getRooms().get(roomID).getEast();
                 player.map.getRoom(direction);
-            }
-            else if (playerInput.equalsIgnoreCase("w") || playerInput.equalsIgnoreCase("west")){
+            } else if (playerInput.equalsIgnoreCase("w") || playerInput.equalsIgnoreCase("west")) {
                 String direction = GameMap.getRooms().get(roomID).getWest();
                 player.map.getRoom(direction);
-            }
-            else if (playerInput.equalsIgnoreCase("quit")){
+            } else if (playerInput.equalsIgnoreCase("quit")) {
                 System.out.println("Thanks for playing!");
                 playGame = false;
-            }
-            else{
+            } else {
                 System.out.println("Invalid input, please enter a direction (N, S, E, W)");
             }
             GameMap.getRooms().get(roomID).setVisitedRoom(true);
             roomID = Player.getPlayerLocation();
         }
-
     }
 
 
