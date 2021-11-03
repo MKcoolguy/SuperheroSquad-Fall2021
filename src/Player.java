@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Player extends Entity {
 
     private int hp;
@@ -30,6 +31,8 @@ public class Player extends Entity {
         this.itemEquipped = itemEquipped;
     }
 
+    Scanner sc = new Scanner(System.in);
+    
     /*public void pickupItem(String item) {
         for (int i = 0; i < getItems().size(); i++){
             if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
@@ -126,6 +129,22 @@ public class Player extends Entity {
 
     //corresponds to the fight command, brings you to battle environment.
     public void fight() {
+       if(map.getRooms().get(getPlayerLocation()).hasMonster()){
+    		System.out.println("There is a monster in the room, type Inspect to examin it");
+    	    	String response = sc.nextLine();
+    	    	if(response.equalsIgnoreCase("inspect")) {
+    	    		System.out.println();  //monster name,des,power
+    	    	}
+    	    	System.out.println("fight or flee ?");
+    	    	 if (response.equalsIgnoreCase("flee")) {
+    	    	map.getRooms().get(getPlayerLocation()).setMonster(false);
+    	    	}
+    	    	 else {
+    	    		 // fight here
+    	    	 }
+    	} 
+        
+        
 
     }
 
