@@ -1,18 +1,24 @@
 public class UserInterface {
 
-    private String message;
+    private String [] message;
     private String tile;
 
 
-        public UserInterface() {     //constructor
-
+    public UserInterface(String title, String [] message) {
+        System.out.println("+--------------------+");
+        System.out.println(title);
+        System.out.println("+--------------------+");
+        for (String s: message) {
+            System.out.println(s);
         }
+        System.out.println("+--------------------+");
+    }
 
-    public String getMessage() {
+    public String[] getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(String[] message) {
         this.message = message;
     }
 
