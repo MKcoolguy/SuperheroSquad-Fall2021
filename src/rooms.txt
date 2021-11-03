@@ -44,7 +44,7 @@ false
 false
 5
 Georgia North
-"I have a dream" ...Stone mountain stands majestically in the distance.Centennial Olympic park welcomed triumphant Olympians.
+"I have a dream" ...Stone mountain stands majestically in the distance. Centennial Olympic park welcomed triumphant Olympians.
 9
 4
 6
@@ -55,7 +55,7 @@ true
 false
 6
 South Carolina
-Barbecue Barbecue Barbecue.Mm..Mm..Mm.Angel Oak ...500years old and counting."Motto:While I breathe, I hope"
+Barbecue Barbecue Barbecue. Mm..Mm..Mm. Angel Oak ... 500 years old and counting. "Motto: While I breathe, I hope".
 20
 0
 0
@@ -66,7 +66,7 @@ false
 false
 7
 Arkansas
-Be as fit as a fiddle, great adventures are ahead of you... Apples are blossoming . Have an apple each day and keep the Doctor away.
+Be as fit as a fiddle, great adventures are ahead of you... Apples are blossoming. Have an apple each day and keep the Doctor away.
 0
 15
 8
@@ -77,7 +77,7 @@ true
 false
 8
 Tennessee West
-"The Volunteer State" .Can't make it to Greece? The Parthenon is welcoming you here
+"The Volunteer State". Can't make it to Greece? The Parthenon is welcoming you here.
 17
 3
 9
@@ -88,7 +88,7 @@ false
 false
 9
 Tennessee East
-The Great Smoky Mountain stretches the land... Did you ever find the answer to this , "What's love got to do with it"?
+The Great Smoky Mountain stretches the land... Did you ever find the answer to this, "What's love got to do with it"?
 0
 5
 0
@@ -99,7 +99,7 @@ true
 false
 10
 Texas North
-Six Flags over Texas welcomes you. Wanna ride at 85 mph speeds, Oooooo....
+Six Flags over Texas welcomes you. Wanna ride at 85 mph speeds,Oooooo....
 12
 11
 15
@@ -110,7 +110,7 @@ false
 false
 11
 Texas South
-"What's up Doc?".Enjoy a Dr.Pepper for a healthier you.Remember the Alamo. Soldiers fought here for their beliefs
+"What's up Doc?". Enjoy a Dr.Pepper for a healthier you. Remember the Alamo. Soldiers fought here for their beliefs.
 10
 0
 14
@@ -121,7 +121,7 @@ true
 false
 12
 Oklahoma
-"okla" and "humma" mean red people.Our motto: Labor conquers all things.Come to "Humpty Dumpty supermarket" for a shopping cart ride.
+"okla" and "humma" mean red people. Our motto: Labor conquers all things. Come to "Humpty Dumpty supermarket" for a shopping cart ride.
 0
 10
 7
@@ -143,7 +143,7 @@ false
 false
 14
 Louisiana West
-Hooray...Sportsman's Paradise Enjoy a Jazz session.. The Mardi Gras festival is welcoming you
+Hooray... Sportsman's Paradise Enjoy a Jazz session. The Mardi Gras festival is welcoming you.
 0
 0
 13
@@ -154,7 +154,7 @@ false
 false
 15
 Mississippi
-Come to the land where Magnolia trees are blooming and Mocking birds singing over 200 songs..."Can't help falling in love..." I can't, Can you?
+Come to the land where Magnolia trees are blooming and Mocking birds singing over 200 songs... "Can't help falling in love..." I can't, Can you?
 7
 0
 3
@@ -165,7 +165,7 @@ false
 false
 16
 Virginia
-Cardinals captured every heart....Thanksgiving traditions sprouted from this land. "Mother of Presidents", eight gentlemen succeeded to the highest office in the land.
+Cardinals captured every heart.... Thanksgiving traditions sprouted from this land. "Mother of Presidents", eight gentlemen succeeded to the highest office in the land.
 19
 20
 0
@@ -176,7 +176,7 @@ true
 false
 17
 Kentucky
-Remember me when you sing "Happy birthday to you".Thoroughbreds are capturing the hearts...Post-its are not going to leave your desk not very soon.The Emancipation Proclamation changed history...
+Remember me when you sing "Happy birthday to you". Thoroughbreds are capturing the hearts... Post-its are not going to leave your desk not very soon. The Emancipation Proclamation changed history...
 0
 8
 18
@@ -198,7 +198,7 @@ false
 false
 19
 Maryland
-Come to the land where the Post Office system began.From this land the balloon first ascended to the sky. What a moment it was that the "Star-Spangled Banner" was born after seeing the flag still waving during the battle...
+Come to the land where the Post Office system began. From this land the balloon first ascended to the sky. What a moment it was that the "Star-Spangled Banner" was born after seeing the flag still waving during the battle...
 0
 16
 0
@@ -209,7 +209,7 @@ false
 false
 20
 North Carolina
-Come to the land where 322 miles of shoreline are known as the Graveyard of the Atlantic. Be aware that you don't get trapped inside the Venus Flytraps.Muscadine mother vines produce antioxidant-rich juices and health formulas. Don't get wasted!!!
+Come to the land where 322 miles of shoreline are known as the Graveyard of the Atlantic. Be aware that you don't get trapped inside the Venus Flytraps. Muscadine mother vines produce antioxidant-rich juices and health formulas. Don't get wasted!!!
 16
 6
 0
