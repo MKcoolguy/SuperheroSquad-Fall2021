@@ -88,6 +88,7 @@ public class Player extends Entity {
     public void unequipItem(String item) {
         if (isItemEquipped()) {
             System.out.println(item + " has been unequipped.");
+            setItemEquipped(false);
             //set effect here
         }
         else {
