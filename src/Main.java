@@ -3,7 +3,74 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import supertest.Map;
+import supertest.Player;
+import supertest.Rooms;
+import yurpp.GameMap;
+
 public class Main {
+    public static void main(String[] args) {
+        Player player = new Player();
+        File roomsFile = new File("GamesRooms.txt");
+        Scanner roomsReader = null;
+        try {
+            roomsReader = new Scanner(roomsFile);
+        }catch (FileNotFoundException e){
+            System.out.println("File not found, program ending");
+            System.exit(0);
+            e.printStackTrace();
+        }
+
+        while (roomsReader.hasNext()){
+            String roomID = roomsReader.nextLine();
+            String roomDesc = roomsReader.nextLine();
+            String visitedRoomString = roomsReader.nextLine();
+            boolean visitedRoom = Boolean.parseBoolean(visitedRoomString);
+            String north = roomsReader.nextLine();
+            String south = roomsReader.nextLine();
+            String east = roomsReader.nextLine();
+            String west = roomsReader.nextLine();
+
+            Rooms room = new Rooms(roomID, roomDesc, visitedRoom, north, south, east, west);
+            GameMap.addRoom(room);
+        }
+
+        Scanner sc = new Scanner(System.in);
+        int roomID = 0;
+        boolean playGame = true;
+
+        while (playGame){
+            System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomDesc() + ". Which direction do you want to go? (N, S, E, W). To end the game, type quit.");
+            String playerInput = sc.next();
+            if (playerInput.equalsIgnoreCase("n") || playerInput.equalsIgnoreCase("north")){
+                String direction = GameMap.getRooms().get(roomID).getNorth();
+                player.map.getRoom(direction);
+            }
+            else if (playerInput.equalsIgnoreCase("s") || playerInput.equalsIgnoreCase("south")){
+                String direction = GameMap.getRooms().get(roomID).getSouth();
+                player.map.getRoom(direction);
+            }
+            else if (playerInput.equalsIgnoreCase("e") || playerInput.equalsIgnoreCase("east")){
+                String direction = GameMap.getRooms().get(roomID).getEast();
+                player.map.getRoom(direction);
+            }
+            else if (playerInput.equalsIgnoreCase("w") || playerInput.equalsIgnoreCase("west")){
+                String direction = GameMap.getRooms().get(roomID).getWest();
+                player.map.getRoom(direction);
+            }
+            else if (playerInput.equalsIgnoreCase("quit")){
+                System.out.println("Thanks for playing!");
+                playGame = false;
+            }
+            else{
+                System.out.println("Invalid input, please enter a direction (N, S, E, W)");
+            }
+            GameMap.getRooms().get(roomID).setVisitedRoom(true);
+            roomID = Player.getPlayerLocation();
+        }
+
+    }
+
 
 	public static void main(String[] args) {
 		ArrayList<Puzzles> puzzles = Puzzles.loadPuzzlesFromFile("Puzzles.txt");
