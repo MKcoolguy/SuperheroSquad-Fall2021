@@ -12,7 +12,7 @@ false
 2
 Florida North
 You head North, You come across a Vast swamp. The heat weighs down upon you and you feel slightly itchy.
-5
+4
 1
 0
 0
@@ -69,7 +69,7 @@ Arkansas
 Be as fit as a fiddle, great adventures are ahead of you... Apples are blossoming . Have an apple each day and keep the Doctor away.
 0
 15
-9
+8
 12
 false
 true
@@ -157,8 +157,8 @@ Mississippi
 Come to the land where Magnolia trees are blooming and Mocking birds singing over 200 songs..."Can't help falling in love..." I can't, Can you?
 7
 0
-10
 3
+10
 false
 true
 false
@@ -190,8 +190,8 @@ West Virginia
 Come here on a Mother's Day to this Mountain state prepared for hiking, mountain biking, skiing whitewater rafting and much more. Don't forget a relaxing breakfast for your mother...
 0
 0
-17
 16
+17
 true
 true
 false
@@ -200,7 +200,7 @@ false
 Maryland
 Come to the land where the Post Office system began.From this land the balloon first ascended to the sky. What a moment it was that the "Star-Spangled Banner" was born after seeing the flag still waving during the battle...
 0
-18
+16
 0
 0
 false
@@ -210,7 +210,7 @@ false
 20
 North Carolina
 Come to the land where 322 miles of shoreline are known as the Graveyard of the Atlantic. Be aware that you don't get trapped inside the Venus Flytraps.Muscadine mother vines produce antioxidant-rich juices and health formulas. Don't get wasted!!!
-18
+16
 6
 0
 0
