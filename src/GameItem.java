@@ -1,8 +1,15 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class GameItem {
+public abstract class GameItem implements Serializable    {
 
-    private int id;
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int id;
     private String itemName;
     private String itemDesc;
     private String itemType; // Consumable or equippable type
