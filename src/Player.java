@@ -48,13 +48,32 @@ public class Player extends Entity {
         }
     }*/
 
-    /*public void inspectItem(String item) {
-        for (int i = 0; i < getItems().size(); i++){
-            if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
-                System.out.println(getItems().get(i).getItemDesc());
+    public void inspectItem(String input, GameItem item) {
+        for (int i = 0; i < item.getItems().size(); i++){
+            if (input.equalsIgnoreCase(item.getItems().get(i).getItemName())){
+                System.out.println(item.getItems().get(i).getItemDesc());
             }
         }
-    }*/
+    }
+
+    public void checkStatus(String input){
+        if (input.equalsIgnoreCase("status")){
+            System.out.println("You have " + getHp() + " HP.");
+        }
+    }
+
+    public void checkInventory(String input, Player player){
+        if (input.equalsIgnoreCase("inventory")){
+            if (player.getInventory().size() == 0){
+                System.out.println("You do not have any items in your inventory");
+            } else {
+                System.out.println("Items in your inventory: ");
+                for (int i = 0; i < player.getInventory().size(); i++){
+                    System.out.println(player.getInventory().get(i).getItemName());
+                }
+            }
+        }
+    }
 
     /*public void dropItem(String item) {
         for (int i = 0; i < player.getInventory().size(); i++){
