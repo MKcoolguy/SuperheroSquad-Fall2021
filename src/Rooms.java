@@ -22,7 +22,7 @@ public class Rooms implements Serializable {
         this.roomDesc = roomDesc;
         this.exitRooms = exitRooms;
     }
-
+    //comment
     //Rooms getters and setters
 
     public int getRoomID() {

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Entity {
 
@@ -8,7 +9,8 @@ public abstract class Entity {
     private int healthMax;
     private String desc;
     private int stength;
-    ArrayList<GameItem> inventory; //might discard in favor of hashmap
+    private HashMap<String, GameItem> inventory;
+    //ArrayList<GameItem> inventory; //might discard in favor of hashmap
     private int entityLocation;
 
     public int getId() {
@@ -59,11 +61,20 @@ public abstract class Entity {
         this.stength = stength;
     }
 
-    public ArrayList<GameItem> getInventory() {
+//    public ArrayList<GameItem> getInventory() {
+//        return inventory;
+//    }
+//
+//    public void setInventory(ArrayList<GameItem> inventory) {
+//        this.inventory = inventory;
+//    }
+
+
+    public HashMap<String, GameItem> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<GameItem> inventory) {
+    public void setInventory(HashMap<String, GameItem> inventory) {
         this.inventory = inventory;
     }
 

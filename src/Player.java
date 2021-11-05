@@ -108,7 +108,7 @@ public class Player extends Entity {
 
     //consumeItem method corresponds to the "use" command
     public void consumeItem(Player player, GameItem item) {
-        if (player.getInventory().contains(item)) {
+        if (player.getInventory().containsKey(item.getItemName())) {
             if (item.getItemType().equalsIgnoreCase("consumable")) {
                 //setEffect here
                 player.getInventory().remove(item);
@@ -124,7 +124,7 @@ public class Player extends Entity {
 
     //drop method corresponds to the drop command
     public void drop (Player player, GameItem item, GameMap map) {
-        if (player.getInventory().contains(item)) {
+        if (player.getInventory().containsKey(item.getItemName())) {
             getInventory().remove(item);
             //map.getRooms().get(getPlayerLocation()).setItem(true);
             System.out.println("You have dropped a: " + item.getItemName() + ".");
