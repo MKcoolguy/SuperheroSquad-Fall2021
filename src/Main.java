@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -96,6 +97,28 @@ public class Main {
             //exits the game and doesn't save current progress
             else if (playerInput.equalsIgnoreCase("exit")) {
                 System.exit(0);
+            }
+            else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
+                //list room contents with descriptions
+            }
+            //consume item command
+            else if (playerInput.startsWith("use")) {
+                //player.consumeItem(player, ); pass item through argument
+            }
+            //equip command. only works if item is not currently equipped
+            else if (playerInput.startsWith("equip")) {
+                String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
+                //player.equipItem(); pass item through argument
+            }
+            //unequip command. only works if item is equipped
+            else if (playerInput.startsWith("unequip")) {
+                String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
+                player.unequipItem(item);
+            }
+            //drop command
+            else if (playerInput.startsWith("drop")) {
+                String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
+                //player.drop(player,); drop item command
             }
 
             //if monster is in room command
