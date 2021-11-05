@@ -125,14 +125,15 @@ public class Player extends Entity {
     }
 
     //drop method corresponds to the drop command
-    public void drop (Player player, GameItem item, GameMap map) {
-        if (player.getInventory().containsKey(item.getItemName())) {
+    public void drop (Player player, String item, GameMap map) {
+        if (player.getInventory().containsKey(item)) {
+            //add back to map.
             getInventory().remove(item);
             //map.getRooms().get(getPlayerLocation()).setItem(true);
-            System.out.println("You have dropped a: " + item.getItemName() + ".");
+            System.out.println("You have dropped a: " + item + ".");
         }
         else {
-            System.out.println("Inventory does not contain " + item.getItemName() + ".");
+            System.out.println("Inventory does not contain " + item + ".");
         }
     }
 

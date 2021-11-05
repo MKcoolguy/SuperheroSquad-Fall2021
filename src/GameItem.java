@@ -16,7 +16,6 @@ public abstract class GameItem implements Serializable    {
     private ArrayList<GameItem> items;
     private String itemLocation; //why not make this int?
 
-
     public int getId() {
         return id;
     }

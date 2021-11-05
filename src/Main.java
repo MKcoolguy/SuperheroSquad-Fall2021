@@ -47,14 +47,14 @@ public class Main {
     //when user selects start game
     public static void startGame(Scanner sc) {
         Player player = new Player();
-        //GameMap map = new GameMap();
+        GameMap map = new GameMap();
         boolean playGame = true;
 
         player.setPlayerLocation(1); //set player location room 1
         int currentRoom = player.getPlayerLocation(); // shortcut variable for getting players location
 
-        System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
-        System.out.println(GameMap.getRooms().get(currentRoom).getRoomDesc());
+        System.out.println("You are in " + map.getRooms().get(currentRoom).getRoomName());
+        System.out.println(map.getRooms().get(currentRoom).getRoomDesc());
         System.out.println("Which direction do you want to go? N S E W?");
 
         while (playGame) {
@@ -63,8 +63,8 @@ public class Main {
             String playerInput = sc.nextLine();
 
             //navigate rooms command
-            if (GameMap.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
-                currentRoom = GameMap.getRooms().get(currentRoom).getExitRooms().get(playerInput); //updates what room player is in.
+            if (map.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
+                currentRoom = map.getRooms().get(currentRoom).getExitRooms().get(playerInput); //updates what room player is in.
                 player.setPlayerLocation(currentRoom); //sets player location to currentRoom
                 System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
                 System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
@@ -118,7 +118,7 @@ public class Main {
             //drop command
             else if (playerInput.startsWith("drop")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                //player.drop(player,); drop item command
+                player.drop(player, item, map);
             }
 
             //if monster is in room command
@@ -208,6 +208,8 @@ public class Main {
                     }
                 }
             }
+            //just need to create item objects now
+            //GameItem items = new GameItem();
         }
     }
 

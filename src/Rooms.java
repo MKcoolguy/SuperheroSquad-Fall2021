@@ -7,7 +7,6 @@ public class Rooms implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     //Room attributes
-    // Testing
     private int roomID;
     private String roomName;
     private String roomDesc;
