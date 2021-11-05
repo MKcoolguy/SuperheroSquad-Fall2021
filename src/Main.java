@@ -11,7 +11,7 @@ public class Main {
             //methods that read from text files.
             readRoom();
             //readMonster(); need to set these up
-            //readItems(); need to set these up
+            //readItems();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -189,15 +189,25 @@ public class Main {
     public static void readItems() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("src/GameItems.txt"));
         while (scanner.hasNextLine()) {
-            String itemNum = scanner.nextLine().trim();
-            if (itemNum.trim().equals("")) {
-                itemNum = scanner.nextLine().trim();
+            String result = scanner.nextLine().trim();
+            if (result.matches("^IT[0-9]+")) {
+                //System.out.println(result);
+                String itemID = result;
+                String itemName = scanner.nextLine().trim();
+                String itemDesc = scanner.nextLine().trim();
+                String itemType = scanner.nextLine().trim();
+                String itemPower = scanner.nextLine().trim();
             }
-            String itemName = scanner.nextLine().trim();
-            String itemType = scanner.nextLine().trim();
-            String itemPower = scanner.nextLine().trim();
-            String itemRooms = scanner.nextLine().trim();
-            //System.out.println(itemNum);
+            else {
+                if (!result.trim().equals("")) {
+                   String itemRooms = result;
+                   String[] splitter = itemRooms.split("[,]");
+                    for (String s : splitter) {
+                        int rooms = Integer.parseInt(s.trim());
+                        System.out.println(rooms);
+                    }
+                }
+            }
         }
     }
 
