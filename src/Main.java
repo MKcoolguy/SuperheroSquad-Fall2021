@@ -17,16 +17,17 @@ public class Main {
 
 
         Scanner sc = new Scanner(System.in);
-        String[] arrMainMenu = {"Start", "Reload", "Help", "Quit"};
-        UserInterface ui = new UserInterface("Welcome to adventure south", arrMainMenu);
 
-        mainMenu(sc); // launches the main menu and game goes from there
+
+        startMenu(sc); // launches the main menu and game goes from there
     }
 
 
     //game starting menu
-    public static void mainMenu(Scanner sc) {
-        String playerInput = sc.next();
+    public static void startMenu(Scanner sc) {
+        UserInterface.displayStartMenu(); //game start menu launch
+
+        String playerInput = sc.nextLine();
         if (playerInput.equalsIgnoreCase("start")) {
             startGame(sc);
         } else if (playerInput.equalsIgnoreCase("reload")) {
@@ -58,7 +59,7 @@ public class Main {
         while (playGame) {
 
 
-            String playerInput = sc.next();
+            String playerInput = sc.nextLine();
 
             //navigate rooms command
             if (GameMap.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
@@ -66,9 +67,37 @@ public class Main {
                 player.setPlayerLocation(currentRoom); //sets player location to currentRoom
                 System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
                 System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
-            } else {
-                System.out.println("Oop, can't go that way!");
             }
+            //menu command
+            else if (playerInput.equalsIgnoreCase("m") || playerInput.equalsIgnoreCase("menu")) {
+                UserInterface.displayMenu();
+            }
+            //inventory command
+            else if (playerInput.equalsIgnoreCase("i") || playerInput.equalsIgnoreCase("inventory")) {
+                //UserInterface.displayInventory(); pass arrayList inventory in as argument
+            }
+            //status command
+            else if (playerInput.equalsIgnoreCase("status")){
+                //UserInterface.displayStatus(); need to implement features to pass through arguments
+            }
+            //help command
+            else if (playerInput.equalsIgnoreCase("help")) {
+                //feature to display all commands and their descriptions
+            }
+            //start menu command. will bring player back into start screen
+            else if (playerInput.equalsIgnoreCase("start menu") || playerInput.equalsIgnoreCase("Main Menu")) {
+                startMenu(sc);
+                playGame = false;
+            }
+            //command to display player's health, attack and defense stats
+            else if (playerInput.equalsIgnoreCase("check stats")) {
+                player.checkStats();
+            }
+            //exits the game and doesn't save current progress
+            else if (playerInput.equalsIgnoreCase("exit")) {
+                System.exit(0);
+            }
+
             //if monster is in room command
 
         }

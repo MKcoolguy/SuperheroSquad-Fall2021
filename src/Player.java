@@ -1,7 +1,6 @@
 import java.util.Scanner;
 public class Player extends Entity {
 
-    private int hp;
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
 
@@ -11,14 +10,6 @@ public class Player extends Entity {
 
     public void setPlayerLocation(int room){
         roomID = room;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
     }
 
     public boolean isItemEquipped() {
@@ -53,10 +44,10 @@ public class Player extends Entity {
         }
     }
 
-    public void checkStatus(String input){
-        if (input.equalsIgnoreCase("status")){
-            System.out.println("You have " + getHp() + " HP.");
-        }
+    //shows uses health,
+    public void checkStats(){
+            System.out.println("Health : " + getHealth() + "/" + getHealthMax());
+            System.out.println("Attack : " + getStength());
     }
 
     public void checkInventory(String input, Player player){
@@ -158,7 +149,7 @@ public class Player extends Entity {
     	    	 else {
     	    		 // fight here
     	    	 }
-    	} 
+    	}
 
 
     @Override

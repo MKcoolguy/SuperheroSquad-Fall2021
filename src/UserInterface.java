@@ -1,18 +1,10 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class UserInterface {
 
+    private static String title;
     private String [] message;
-    private String tile;
-
-
-    public UserInterface(String title, String [] message) {
-        System.out.println("+--------------------+");
-        System.out.println(title);
-        System.out.println("+--------------------+");
-        for (String s: message) {
-            System.out.println(s);
-        }
-        System.out.println("+--------------------+");
-    }
 
     public String[] getMessage() {
         return message;
@@ -22,15 +14,56 @@ public class UserInterface {
         this.message = message;
     }
 
-    public String getTile() {
-        return tile;
+    public static String getTitle() {
+        return title;
     }
 
-    public void setTile(String tile) {
-        this.tile = tile;
+    public void setTile(String title) {
+        this.title = title;
     }
 
-    public String displayedElements() {
-        return  "";
+    public static void displayMenu() {
+        String [] message = {"Restart","Status","Help", "Quit"};
+        System.out.println("+--------------------+");
+        System.out.println("Main Menu");
+        System.out.println("+--------------------+");
+        for (String s: message) {
+            System.out.println(s);
+        }
+        System.out.println("+--------------------+");
+    }
+
+    public static void displayStartMenu() {
+        String [] message = {"Start","Status","Help","Quit"};
+        System.out.println("+--------------------+");
+        System.out.println("Welcome to Adventure South Game");
+        System.out.println("+--------------------+");
+        System.out.println("Main Menu");
+        System.out.println("+--------------------+");
+        for (String s: message) {
+            System.out.println(s);
+        }
+        System.out.println("+--------------------+");
+    }
+
+    public static void displayInventory(ArrayList<GameItem> inventory) {
+        System.out.println("+--------------------+");
+        System.out.println("Inventory");
+        System.out.println("+--------------------+");
+        for (GameItem item: inventory) {
+            System.out.println(item);
+        }
+        System.out.println("+--------------------+");
+    }
+
+    public static void displayStatus(int score, int movesMade, int playerHP ) {
+        System.out.println("+--------------------+");
+        System.out.println("Status");
+        System.out.println("+--------------------+");
+        System.out.println("Score : " + score);
+        System.out.println("Moves made : " + movesMade);
+        System.out.println("Player HP : " + playerHP);
+        System.out.println("Back");
+        System.out.println("+--------------------+");
     }
 }
