@@ -51,18 +51,14 @@ public class Main {
         String playerInput = sc.next();
         if (playerInput.equalsIgnoreCase("start")) {
             startGame(sc);
-        }
-        else if (playerInput.equalsIgnoreCase("reload")){
+        } else if (playerInput.equalsIgnoreCase("reload")) {
             //reload game feature goes here
-        }
-        else if (playerInput.equalsIgnoreCase("help")) {
+        } else if (playerInput.equalsIgnoreCase("help")) {
             // help feature
-        }
-        else if (playerInput.equalsIgnoreCase("quit")) {
+        } else if (playerInput.equalsIgnoreCase("quit")) {
             sc.close();
             System.out.println("Game aborted.");
-        }
-        else {
+        } else {
             System.out.println("Not a valid command.");
         }
     }
@@ -73,33 +69,31 @@ public class Main {
         Player player = new Player();
         GameMap map = new GameMap();
         boolean playGame = true;
-        int roomID = 1;
+
+        player.setPlayerLocation(1); //set player location room 1
+        int currentRoom = player.getPlayerLocation(); // shortcut variable for getting players location
+
+        System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
+        System.out.println(GameMap.getRooms().get(currentRoom).getRoomDesc());
+        System.out.println("Which direction do you want to go? N S E W?");
 
         while (playGame) {
 
-            System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomName());
-            System.out.println(GameMap.getRooms().get(roomID).getRoomDesc());
-            System.out.println("Which direction do you want to go? N S E W?");
 
-            //System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
+            String playerInput = sc.next();
 
-            while (playGame) {
-                String playerInput = sc.next();
-
-                //navigate rooms command
-                if (GameMap.getRooms().get(roomID).getExitRooms().containsKey(playerInput)) {
-                    roomID = GameMap.getRooms().get(roomID).getExitRooms().get(playerInput);
-                    //map.setPlayerLocation(currentRoom);
-                    System.out.println("You are in room: " + GameMap.rooms.get(roomID).getRoomName());
-                    System.out.println(GameMap.rooms.get(roomID).getRoomDesc());
-                }
-                else {
-                    System.out.println("Not a valid direction");
-                }
+            //navigate rooms command
+            if (GameMap.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
+                currentRoom = GameMap.getRooms().get(currentRoom).getExitRooms().get(playerInput); //updates what room player is in.
+                player.setPlayerLocation(currentRoom); //sets player location to currentRoom
+                System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
+                System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
+            } else {
+                System.out.println("Oop, can't go that way!");
             }
+        }
 
-        }
-        }
+    }
 
 
 	/*public static void main(String[] args) {
@@ -218,8 +212,6 @@ public class Main {
 		} catch(Exception e) {
 			System.out.println("can't load data");
 		}*/
-		
-		
-		
-		
+
+
 }

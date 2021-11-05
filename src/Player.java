@@ -5,11 +5,11 @@ public class Player extends Entity {
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
 
-    public static int getPlayerLocation(){
+    public int getPlayerLocation(){
         return roomID;
     }
 
-    public static void setPlayerLocation(int room){
+    public void setPlayerLocation(int room){
         roomID = room;
     }
 
@@ -160,7 +160,7 @@ public class Player extends Entity {
     	    	 }
     	} 
 
-        
+
     @Override
     public int dealDamage() {
         return getStength();
