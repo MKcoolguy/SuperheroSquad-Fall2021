@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 public class Player extends Entity {
 
@@ -21,20 +23,20 @@ public class Player extends Entity {
     }
 
     
-    /*public void pickupItem(String item) {
-        for (int i = 0; i < getItems().size(); i++){
-            if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
-                player.getInventory().add(getItems().get(i));
-                items.remove(getItems().get(i));
-                // need to set the item to false so that it is removed from the room.
-                for (i = 0; i < player.getInventory().size(); i++){
-                    if (item.equalsIgnoreCase(player.getInventory().get(i).getItemName())){
-                        System.out.println(player.getInventory().get(i).getItemName() + " has been picked up and added to your inventory");
-                    }
-                }
-            }
+    public void pickupItem(Player player, GameItem item) {
+        //if item is already in inventory then just add one more to the count
+        if (player.getInventory().containsKey(item.getItemName())) {
+            player.getInventory().get(item.getItemName()).add(item);
         }
-    }*/
+        //if item doesn't exist in inventory
+        else {
+            Queue <GameItem> queue = new LinkedList<>();
+            queue.add(item);
+            player.getInventory().put(item.getItemName(), queue);
+        }
+        System.out.println(item.getItemName() + " has been picked up and added to your inventory");
+        //remove item from map
+    }
 
     public void inspectItem(String input, GameItem item) {
         for (int i = 0; i < item.getItems().size(); i++){
@@ -106,7 +108,12 @@ public class Player extends Entity {
         if (player.getInventory().containsKey(item.getItemName())) {
             if (item.getItemType().equalsIgnoreCase("consumable")) {
                 //setEffect here
-                player.getInventory().remove(item);
+                if (player.getInventory().get(item.getItemName()).size() == 1) { //if there's only one of the item then remove entirely from inventory.
+                    player.getInventory().remove(item.getItemName());
+                }
+                else {
+                    player.getInventory().get(item.getItemName()).poll(); //remove only one if there's more than one item
+                }
             }
             else {
                 System.out.println("This item can't be used since it's not a consumable.");
@@ -132,7 +139,7 @@ public class Player extends Entity {
     //corresponds to the fight command, brings you to battle environment.
     public void fight(Scanner sc, GameMap map) {
        //if(map.getRooms().get(getPlayerLocation()).hasMonster()){
-    		System.out.println("There is a monster in the room, type Inspect to examin it");
+    		System.out.println("There is a monster in the room, type Inspect to examine it");
     	    	String response = sc.nextLine();
     	    	if(response.equalsIgnoreCase("inspect")) {
     	    		System.out.println();  //monster name,des,power
