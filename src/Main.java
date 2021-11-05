@@ -6,35 +6,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        File roomsFile = new File("src/rooms.txt");
-        Scanner roomsReader = null;
         try {
-            roomsReader = new Scanner(roomsFile);
+            //methods that read from text files.
+            readRoom();
+            //readMonster();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found, program ending");
-            System.exit(0);
             e.printStackTrace();
-        }
-        //assigns each line with a variable
-        int roomID = 0;
-        String roomName = "";
-        String roomDesc = "";
-        HashMap<String, Integer> possibleExits = new HashMap<>();
-        while (roomsReader.hasNext()) {
-            String result = roomsReader.nextLine();
-            if (result.matches("\\d+")) {
-                roomID = Integer.parseInt(result);
-                roomName = roomsReader.nextLine();
-                roomDesc = roomsReader.nextLine();
-                possibleExits = new HashMap<>();
-            } else {
-                if (!result.trim().equals("")) {
-                    String[] splitter = result.split("\\s+");
-                    possibleExits.put(splitter[0], Integer.parseInt(splitter[1]));
-                }
-            }
-            Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
-            GameMap.addRoom(roomID, room);
         }
 
 
@@ -67,7 +44,7 @@ public class Main {
     //when user selects start game
     public static void startGame(Scanner sc) {
         Player player = new Player();
-        GameMap map = new GameMap();
+        //GameMap map = new GameMap();
         boolean playGame = true;
 
         player.setPlayerLocation(1); //set player location room 1
@@ -91,9 +68,52 @@ public class Main {
             } else {
                 System.out.println("Oop, can't go that way!");
             }
+            //if monster is in room command
+
         }
 
     }
+
+    public static void readMonster() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File("src/Monsters.txt"));
+
+        while (scanner.hasNextLine()) {
+            String monsterNum = scanner.nextLine().trim();
+            if (monsterNum.trim().equals("")) {
+                monsterNum = scanner.nextLine().trim();
+            }
+            String monsterName = scanner.nextLine().trim();
+            String monsterDesc = scanner.nextLine().trim();
+            int monsterHp = Integer.parseInt(scanner.nextLine().trim());
+            String monsterItemCarried = scanner.nextLine().trim();  // attack / Hp potion
+        }
+    }
+
+        public static void readRoom() throws FileNotFoundException{
+            Scanner roomsReader = new Scanner(new File("src/rooms.txt"));
+
+            //assigns each line with a variable
+            int roomID = 0;
+            String roomName = "";
+            String roomDesc = "";
+            HashMap<String, Integer> possibleExits = new HashMap<>();
+            while (roomsReader.hasNext()) {
+                String result = roomsReader.nextLine();
+                if (result.matches("\\d+")) {
+                    roomID = Integer.parseInt(result);
+                    roomName = roomsReader.nextLine();
+                    roomDesc = roomsReader.nextLine();
+                    possibleExits = new HashMap<>();
+                } else {
+                    if (!result.trim().equals("")) {
+                        String[] splitter = result.split("\\s+");
+                        possibleExits.put(splitter[0], Integer.parseInt(splitter[1]));
+                    }
+                }
+                Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
+                GameMap.addRoom(roomID, room);
+            }
+        }
 
 
 	/*public static void main(String[] args) {
@@ -137,19 +157,7 @@ public class Main {
 		scanner.close();
 	}
 	
-    public static void readMonster() throws FileNotFoundException {
-		Scanner scanner = new Scanner(new File("src/Monsters.txt"));
-		
-		while (scanner.hasNextLine()) {
-			String monsterNum = scanner.nextLine().trim();
-			if (monsterNum.trim().equals("")) {
-				monsterNum = scanner.nextLine().trim();
-			}
-			String monsterName = scanner.nextLine().trim();
-			String monsterDesc = scanner.nextLine().trim();
-			int monsterHp = Integer.parseInt(scanner.nextLine().trim());
-			String monsterItemCarried = scanner.nextLine().trim();  // attack / Hp potion
-		}
+
 	}    
      public static void readPuzzle() throws FileNotFoundException {
     	Scanner scanner = new Scanner(new File("src/Puzzles.txt"));
