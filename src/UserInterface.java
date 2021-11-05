@@ -68,5 +68,50 @@ public class UserInterface {
         System.out.println("Player HP : " + playerHP);
         System.out.println("Back");
         System.out.println("+--------------------+");
+    
+    }
+    public static void displayHelp() {
+    	System.out.println("+--------------------+");
+        System.out.println("Help");System.out.println("+--------------------+");
+        System.out.println("Start");
+        System.out.println("Start menu");
+        System.out.println("Main Menu");
+        System.out.println("explore room");
+        System.out.println("Status");
+        System.out.println("Inventory ");
+        System.out.println("reload ");
+        System.out.println("m" );
+        System.out.println("menu" );
+        System.out.println("i" );
+        System.out.println("inventory" );
+        System.out.println("check stats" );
+        System.out.println("explore" );
+        System.out.println("exit" );
+        System.out.println("use" );
+        System.out.println("fight");
+        System.out.println("inspect");
+        System.out.println("flee");
+        System.out.println("equip" );
+        System.out.println("unequip" );
+        System.out.println("drop" );
+        System.out.println("North" );
+        System.out.println("north" );
+        System.out.println("N" );
+        System.out.println("n" );
+        System.out.println("South" );
+        System.out.println("south" );
+        System.out.println("S" );
+        System.out.println("s" );
+        System.out.println("East" );
+        System.out.println("east" );
+        System.out.println("E" );
+        System.out.println("e" );
+        System.out.println("West" );
+        System.out.println("west" );
+        System.out.println("W" );
+        System.out.println("w" );
+        System.out.println("Quit");
+        System.out.println("+--------------------+");
+    
     }
 }
