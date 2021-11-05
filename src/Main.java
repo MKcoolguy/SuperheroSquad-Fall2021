@@ -6,36 +6,26 @@ import java.util.Scanner;
 
 public class Main {
     public static GameMap map = new GameMap();
+
     public static void main(String[] args) {
         try {
             //methods that read from text files.
             readRoom();
-<<<<<<< HEAD
             //readMonster(); need to set these up
             readItems();
-=======
             readMonster();  //need to set these up
             readItems();
             readPuzzle();
-           
-            
-            
->>>>>>> 9c84a4ddbcad2de69379b90403d852c780ecf239
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-
-       Scanner sc = new Scanner(System.in);
-
-
+        
+        Scanner sc = new Scanner(System.in);
         startMenu(sc); // launches the main menu and game goes from there
-<<<<<<< HEAD
-
         //System.out.println(map.getRooms().get(3).getItems().get(0).getItemName());
-=======
         startGame(sc);
->>>>>>> 9c84a4ddbcad2de69379b90403d852c780ecf239
+
     }
 
 
@@ -93,7 +83,7 @@ public class Main {
                 //UserInterface.displayInventory(); pass arrayList inventory in as argument
             }
             //status command
-            else if (playerInput.equalsIgnoreCase("status")){
+            else if (playerInput.equalsIgnoreCase("status")) {
                 //UserInterface.displayStatus(); need to implement features to pass through arguments
             }
             //help command
@@ -112,8 +102,7 @@ public class Main {
             //exits the game and doesn't save current progress
             else if (playerInput.equalsIgnoreCase("exit")) {
                 System.exit(0);
-            }
-            else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
+            } else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
                 //list room contents with descriptions
             }
             //consume item command
@@ -144,7 +133,7 @@ public class Main {
             //if monster is in room command
 
         }
-           
+
     }
 
     public static void readMonster() throws FileNotFoundException {
@@ -160,7 +149,7 @@ public class Main {
             String monsterAttack = scanner.nextLine().trim();
             int monsterHp = Integer.parseInt(scanner.nextLine().trim());
             String monsterRewardCarried = scanner.nextLine().trim();  // attack / Hp potion
-            int monsterLocation = Integer.parseInt(scanner.nextLine().trim());       
+            int monsterLocation = Integer.parseInt(scanner.nextLine().trim());
         }
     }
 
@@ -205,8 +194,8 @@ public class Main {
             }
             Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
             GameMap.addRoom(roomID, room);
-            }
         }
+    }
 
     public static void readItems() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("src/GameItems.txt"));
@@ -224,11 +213,10 @@ public class Main {
                 itemDesc = scanner.nextLine().trim();
                 itemType = scanner.nextLine().trim();
                 itemPower = scanner.nextLine().trim();
-            }
-            else {
+            } else {
                 if (!result.trim().equals("")) {
-                   String itemRooms = result;
-                   String[] splitter = itemRooms.split("[,]");
+                    String itemRooms = result;
+                    String[] splitter = itemRooms.split("[,]");
                     for (String s : splitter) {
                         int room = Integer.parseInt(s.trim());
                         if (map.getRooms().containsKey(room)) {
@@ -236,8 +224,7 @@ public class Main {
                             if (itemType.equalsIgnoreCase("consumable")) {
                                 Consumable c = new Consumable(itemID, itemName, itemDesc, itemType, itemPower, room);
                                 map.getRooms().get(room).addItems(c);
-                            }
-                            else if (itemType.equals("Equippable")){
+                            } else if (itemType.equals("Equippable")) {
                                 Equippable e = new Equippable(itemID, itemName, itemDesc, itemType, itemPower, room);
                                 map.getRooms().get(room).addItems(e);
                             }
@@ -267,9 +254,9 @@ public class Main {
             String failedPuzzleMessg = scanner.nextLine().trim();
             String rightAnswerMessg = scanner.nextLine().trim();
             String PuzzleRewardType = scanner.nextLine().trim();    //hp/attack potions
-          // int puzzleReward = Integer.parseInt(scanner.nextLine().trim());    // number
-           String puzzleReward = scanner.nextLine().trim();
-            
+            // int puzzleReward = Integer.parseInt(scanner.nextLine().trim());    // number
+            String puzzleReward = scanner.nextLine().trim();
+
         }
     }
 
