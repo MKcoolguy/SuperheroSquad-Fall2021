@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -9,7 +8,8 @@ public class Main {
         try {
             //methods that read from text files.
             readRoom();
-            //readMonster();
+            //readMonster(); need to set these up
+            //readItems(); need to set these up
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -89,137 +89,108 @@ public class Main {
         }
     }
 
-        public static void readRoom() throws FileNotFoundException{
-            Scanner roomsReader = new Scanner(new File("src/rooms.txt"));
+    public static void readRoom() throws FileNotFoundException {
+        Scanner roomsReader = new Scanner(new File("src/rooms.txt"));
 
-            //assigns each line with a variable
-            int roomID = 0;
-            String roomName = "";
-            String roomDesc = "";
-            HashMap<String, Integer> possibleExits = new HashMap<>();
-            while (roomsReader.hasNext()) {
-                String result = roomsReader.nextLine();
-                if (result.matches("\\d+")) {
-                    roomID = Integer.parseInt(result);
-                    roomName = roomsReader.nextLine();
-                    roomDesc = roomsReader.nextLine();
-                    possibleExits = new HashMap<>();
-                } else {
-                    if (!result.trim().equals("")) {
-                        String[] splitter = result.split("\\s+");
-                        possibleExits.put(splitter[0], Integer.parseInt(splitter[1]));
-                    }
+        //assigns each line with a variable
+        int roomID = 0;
+        String roomName = "";
+        String roomDesc = "";
+        HashMap<String, Integer> possibleExits = new HashMap<>();
+        while (roomsReader.hasNext()) {
+            String result = roomsReader.nextLine();
+            if (result.matches("\\d+")) {
+                roomID = Integer.parseInt(result);
+                roomName = roomsReader.nextLine();
+                roomDesc = roomsReader.nextLine();
+                possibleExits = new HashMap<>();
+            } else {
+                if (!result.trim().equals("")) {
+                    String[] splitter = result.split("\\s+");
+                    possibleExits.put(splitter[0], Integer.parseInt(splitter[1]));
                 }
-                Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
-                GameMap.addRoom(roomID, room);
             }
+            Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
+            GameMap.addRoom(roomID, room);
         }
+    }
 
+    public static void readItems() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File("src/GameItems.txt"));
+        while (scanner.hasNextLine()) {
+            String itemNum = scanner.nextLine().trim();
+            if (itemNum.trim().equals("")) {
+                itemNum = scanner.nextLine().trim();
+            }
+            String itemName = scanner.nextLine().trim();
+            String itemType = scanner.nextLine().trim();
+            String itemPower = scanner.nextLine().trim();
+            String itemRooms = scanner.nextLine().trim();
+            //System.out.println(itemNum);
+        }
+    }
 
-	/*public static void main(String[] args) {
-		ArrayList<Puzzles> puzzles = Puzzles.loadPuzzlesFromFile("Puzzles.txt");
-		Puzzles.__debugView(puzzles);
-	}
+    public static void readPuzzle() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File("src/Puzzles.txt"));
+        while (scanner.hasNextLine()) {
+            String puzzleNum = scanner.nextLine().trim();
+            if (puzzleNum.trim().equals("")) {
+                puzzleNum = scanner.nextLine().trim();
 
-    public void readItems() {
-        File file = new File("src/GameItems.txt");
+            }
+            String puzzleLocation = scanner.nextLine().trim();
+            String puzzleQuestion = scanner.nextLine().trim();
+            String puzzleAnswer = scanner.nextLine().trim();
+            String puzzleHint = scanner.nextLine().trim();
+            int attemptsAllowed = Integer.parseInt(scanner.nextLine().trim());
+            String outputForIncorrectAns = scanner.nextLine().trim();
+            // Y/N
+            String outputForCorrectAns = scanner.nextLine().trim();
+            String reward = scanner.nextLine().trim();
+            //hp number
+        }
+    }
+
+    // save and load
+    public static void saveGame() throws FileNotFoundException {
+        //using seralization
+        //output stream to save
+        //object = room ,since everything is in the room
+
+        FileOutputStream file = new FileOutputStream("saveGame.txt");  // need to use .Sav file
         try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String itemNum = scanner.nextLine().trim();
-                if (itemNum.trim().equals("")) {
-                    itemNum = scanner.nextLine().trim();
-                }
-                String itemName = scanner.nextLine().trim();
-                String itemType = scanner.nextLine().trim();
-                String itemPower = scanner.nextLine().trim();
-                String itemRooms = scanner.nextLine().trim();
-                System.out.println(itemNum);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            output.flush();
+            output.close();
+            //output.writeObject(room);
+            System.out.println("Game saved");
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
         }
+
+
     }
-    
-	public void readRoom() throws FileNotFoundException {
-		Scanner scanner = new Scanner(new File("src/GamesRooms.txt"));
-		while (scanner.hasNext()) {
-			while (scanner.hasNextLine()) {
-				String roomNum = scanner.nextLine().trim();
-				if (roomNum.trim().equals("")) {
-					roomNum = scanner.nextLine().trim();
-				}
-				String roomName = scanner.nextLine().trim();
-				String roomDesc = scanner.nextLine().trim();
-				String roomDirection = scanner.nextLine().trim();
-			}
-		}
-		scanner.close();
-	}
-	
 
-	}    
-     public static void readPuzzle() throws FileNotFoundException {
-    	Scanner scanner = new Scanner(new File("src/Puzzles.txt"));
-    	while (scanner.hasNextLine()) {
-    		String puzzleNum = scanner.nextLine().trim();
-    		 if (puzzleNum.trim().equals("")) {
-                 puzzleNum = scanner.nextLine().trim();
+    public static void loadGame() throws FileNotFoundException {
+        //using seralization
+        //input stream to save
+        //object = room ,since everything is in the room
 
-             }
-    		 String puzzleLocation = scanner.nextLine().trim();
-    		 String puzzleQuestion = scanner.nextLine().trim();
-    		 String puzzleAnswer = scanner.nextLine().trim();
-    		 String puzzleHint = scanner.nextLine().trim();
-    		 int attemptsAllowed = Integer.parseInt(scanner.nextLine().trim());
-    		 String outputForIncorrectAns = scanner.nextLine().trim();
-    		 // Y/N
-    		 String outputForCorrectAns = scanner.nextLine().trim();
-    		 String reward = scanner.nextLine().trim();
-    		 //hp number 
-    	}
-    	
+        FileInputStream fileInput = new FileInputStream("saveGame.txt");  // need to use .Sav file
+        try {
+            ObjectInputStream input = new ObjectInputStream(fileInput);
+            //room = (Room) input.readObject();
+
+            input.close();
+
+            System.out.println("Game loded");
+
+        } catch (Exception e) {
+            System.out.println("can't load data");
+        }
+
     }
-	static Room room;
-	// save and load
-	public static void saveGame() throws FileNotFoundException {
-		//using seralization 
-		//output stream to save
-		//object = room ,since everything is in the room
-		
-		FileOutputStream file = new FileOutputStream("saveGame.txt");  // need to use .Sav file
-		try {
-			ObjectOutputStream output = new ObjectOutputStream(file);
-		   output.flush();
-		   output.close();
-		   output.writeObject(room);
-		System.out.println("Game saved");
-		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-		
-			e.printStackTrace();
-		}
-		
-		
-	}
-	public static void loadGame() throws FileNotFoundException {
-		//using seralization 
-		//input stream to save
-		//object = room ,since everything is in the room
-		
-		FileInputStream fileInput = new FileInputStream("saveGame.txt");  // need to use .Sav file
-		try {
-			ObjectInputStream input = new ObjectInputStream(fileInput);
-		   room = (Room) input.readObject();
-		   
-		   input.close();
-		   
-		System.out.println("Game loded");
-		
-		} catch(Exception e) {
-			System.out.println("can't load data");
-		}*/
-
-
 }
