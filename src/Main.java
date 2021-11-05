@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -107,13 +108,31 @@ public class Main {
             } else {
                 if (!result.trim().equals("")) {
                     String[] splitter = result.split("\\s+");
+                    Integer value = Integer.parseInt(splitter[1]);
                     possibleExits.put(splitter[0], Integer.parseInt(splitter[1]));
+                    if (splitter[0].equals("North")) {
+                        possibleExits.put("N", value);
+                        possibleExits.put("north", value);
+                        possibleExits.put("n", value);
+                    } else if (splitter[0].equals("East")) {
+                        possibleExits.put("E", value);
+                        possibleExits.put("east", value);
+                        possibleExits.put("e", value);
+                    } else if (splitter[0].equals("South")) {
+                        possibleExits.put("S", value);
+                        possibleExits.put("south", value);
+                        possibleExits.put("s", value);
+                    } else if (splitter[0].equals("West")) {
+                        possibleExits.put("W", value);
+                        possibleExits.put("west", value);
+                        possibleExits.put("w", value);
+                    }
                 }
             }
             Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
             GameMap.addRoom(roomID, room);
+            }
         }
-    }
 
     public static void readItems() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("src/GameItems.txt"));
