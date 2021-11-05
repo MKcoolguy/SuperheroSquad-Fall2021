@@ -159,13 +159,8 @@ public class Player extends Entity {
     	    		 // fight here
     	    	 }
     	} 
+
         
-        
-
-    }
-
-
-
     @Override
     public int dealDamage() {
         return getStength();

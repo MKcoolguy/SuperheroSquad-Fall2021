@@ -40,7 +40,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         String[] arrMainMenu = {"Start", "Reload", "Help", "Quit"};
-        //UserInterface ui = new UserInterface("Welcome to adventure south", arrMainMenu);
+        UserInterface ui = new UserInterface("Welcome to adventure south", arrMainMenu);
 
         mainMenu(sc); // launches the main menu and game goes from there
     }
@@ -73,7 +73,7 @@ public class Main {
         Player player = new Player();
         GameMap map = new GameMap();
         boolean playGame = true;
-        int roomID = 0;
+        int roomID = 1;
 
         while (playGame) {
 
@@ -81,11 +81,12 @@ public class Main {
             System.out.println(GameMap.getRooms().get(roomID).getRoomDesc());
             System.out.println("Which direction do you want to go? N S E W?");
             int currentRoom = 1;
-            System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
-            System.out.println(GameMap.getRooms().get(currentRoom).getExitRooms());
+            //System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
 
             while (playGame) {
                 String playerInput = sc.next();
+
+                //navigate rooms command
                 if (GameMap.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
                     currentRoom = GameMap.getRooms().get(currentRoom).getExitRooms().get(playerInput);
                     //map.setPlayerLocation(currentRoom);
@@ -94,7 +95,6 @@ public class Main {
                 }
                 else {
                     System.out.println("Not a valid direction");
-                    System.out.println(currentRoom);
                 }
             }
 
