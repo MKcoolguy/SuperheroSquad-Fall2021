@@ -10,19 +10,32 @@ public class Main {
         try {
             //methods that read from text files.
             readRoom();
+<<<<<<< HEAD
             //readMonster(); need to set these up
             readItems();
+=======
+            readMonster();  //need to set these up
+            readItems();
+            readPuzzle();
+           
+            
+            
+>>>>>>> 9c84a4ddbcad2de69379b90403d852c780ecf239
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
 
-        Scanner sc = new Scanner(System.in);
+       Scanner sc = new Scanner(System.in);
 
 
         startMenu(sc); // launches the main menu and game goes from there
+<<<<<<< HEAD
 
         //System.out.println(map.getRooms().get(3).getItems().get(0).getItemName());
+=======
+        startGame(sc);
+>>>>>>> 9c84a4ddbcad2de69379b90403d852c780ecf239
     }
 
 
@@ -131,7 +144,7 @@ public class Main {
             //if monster is in room command
 
         }
-
+           
     }
 
     public static void readMonster() throws FileNotFoundException {
@@ -144,8 +157,10 @@ public class Main {
             }
             String monsterName = scanner.nextLine().trim();
             String monsterDesc = scanner.nextLine().trim();
+            String monsterAttack = scanner.nextLine().trim();
             int monsterHp = Integer.parseInt(scanner.nextLine().trim());
-            String monsterItemCarried = scanner.nextLine().trim();  // attack / Hp potion
+            String monsterRewardCarried = scanner.nextLine().trim();  // attack / Hp potion
+            int monsterLocation = Integer.parseInt(scanner.nextLine().trim());       
         }
     }
 
@@ -246,11 +261,15 @@ public class Main {
             String puzzleAnswer = scanner.nextLine().trim();
             String puzzleHint = scanner.nextLine().trim();
             int attemptsAllowed = Integer.parseInt(scanner.nextLine().trim());
-            String outputForIncorrectAns = scanner.nextLine().trim();
+            String incorrectAnsMessg = scanner.nextLine().trim();
             // Y/N
-            String outputForCorrectAns = scanner.nextLine().trim();
-            String reward = scanner.nextLine().trim();
-            //hp number
+            String playerOption = scanner.nextLine().trim();    //Y/n
+            String failedPuzzleMessg = scanner.nextLine().trim();
+            String rightAnswerMessg = scanner.nextLine().trim();
+            String PuzzleRewardType = scanner.nextLine().trim();    //hp/attack potions
+          // int puzzleReward = Integer.parseInt(scanner.nextLine().trim());    // number
+           String puzzleReward = scanner.nextLine().trim();
+            
         }
     }
 
