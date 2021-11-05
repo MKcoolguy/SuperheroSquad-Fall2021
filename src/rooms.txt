@@ -7,27 +7,27 @@ North 2
 Florida North
 You head North, You come across a Vast swamp. The heat weighs down upon you and you feel slightly itchy.
 North 4
-East 1
+South 1
 
 3
 Alabama
 Monarch Butterflies captured our mind. Who wants some pecan pie? Motto : “We dare defend our rights”.
 North 8
-South 5
+East 5
 West 15
 
 4
 Georgia South
 "I can't stop loving you...". 100,000 aquatic animals found home here in over 10 million gallons of water.
 North 5
-East 2
+South 2
 
 5
 Georgia North
 "I have a dream" ...Stone mountain stands majestically in the distance. Centennial Olympic park welcomed triumphant Olympians.
 North 9
-East 4
-South 6
+South 4
+East 6
 West 3
 
 6
@@ -39,42 +39,42 @@ West 5
 7
 Arkansas
 Be as fit as a fiddle, great adventures are ahead of you... Apples are blossoming. Have an apple each day and keep the Doctor away.
-East 15
-South 8
+South 15
+East 8
 West 12
 
 8
 Tennessee West
 "The Volunteer State". Can't make it to Greece? The Parthenon is welcoming you here.
 North 17
-East 3
-South 9
+South 3
+East 9
 West 7
 
 9
 Tennessee East
 The Great Smoky Mountain stretches the land... Did you ever find the answer to this, "What's love got to do with it"?
-East 5
+South 5
 West 8
 
 10
 Texas North
 Six Flags over Texas welcomes you. Wanna ride at 85 mph speeds,Oooooo....
 North 12
-East 11
-South 15
+South 11
+East 15
 
 11
 Texas South
 "What's up Doc?". Enjoy a Dr.Pepper for a healthier you. Remember the Alamo. Soldiers fought here for their beliefs.
 North 10
-South 14
+East 14
 
 12
 Oklahoma
 "okla" and "humma" mean red people. Our motto: Labor conquers all things. Come to "Humpty Dumpty supermarket" for a shopping cart ride.
-East 10
-South 7
+South 10
+East 7
 
 13
 Louisiana East
@@ -84,42 +84,42 @@ West 14
 14
 Louisiana West
 Hooray... Sportsman's Paradise Enjoy a Jazz session. The Mardi Gras festival is welcoming you.
-South 13
+East 13
 West 11
 
 15
 Mississippi
 Come to the land where Magnolia trees are blooming and Mocking birds singing over 200 songs... "Can't help falling in love..." I can't, Can you?
 North 7
-South 3
+East 3
 West 10
 
 16
 Virginia
 Cardinals captured every heart.... Thanksgiving traditions sprouted from this land. "Mother of Presidents", eight gentlemen succeeded to the highest office in the land.
 North 19
-East 20
+South 20
 West 18
 
 17
 Kentucky
 Remember me when you sing "Happy birthday to you". Thoroughbreds are capturing the hearts... Post-its are not going to leave your desk not very soon. The Emancipation Proclamation changed history...
-East 8
-South 18
+South 8
+East 18
 
 18
 West Virginia
 Come here on a Mother's Day to this Mountain state prepared for hiking, mountain biking, skiing whitewater rafting and much more. Don't forget a relaxing breakfast for your mother...
-South 16
+East 16
 West 17
 
 19
 Maryland
 Come to the land where the Post Office system began. From this land the balloon first ascended to the sky. What a moment it was that the "Star-Spangled Banner" was born after seeing the flag still waving during the battle...
-East 16
+South 16
 
 20
 North Carolina
 Come to the land where 322 miles of shoreline are known as the Graveyard of the Atlantic. Be aware that you don't get trapped inside the Venus Flytraps. Muscadine mother vines produce antioxidant-rich juices and health formulas. Don't get wasted!!!
 North 16
-East 6
+South 6
