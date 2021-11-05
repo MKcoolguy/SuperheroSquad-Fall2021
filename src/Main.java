@@ -1,43 +1,46 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         File roomsFile = new File("src/rooms.txt");
         Scanner roomsReader = null;
         try {
             roomsReader = new Scanner(roomsFile);
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File not found, program ending");
             System.exit(0);
             e.printStackTrace();
         }
         //assigns each line with a variable
-        while (roomsReader.hasNext()){
-            String roomID = roomsReader.nextLine();
-            String roomName = roomsReader.nextLine();
-            String roomDesc = roomsReader.nextLine();
-            String north = roomsReader.nextLine();
-            String south = roomsReader.nextLine();
-            String east = roomsReader.nextLine();
-            String west = roomsReader.nextLine();
-            String monsterString = roomsReader.nextLine();
-            boolean monster = Boolean.parseBoolean(monsterString);
-            String itemString = roomsReader.nextLine();
-            boolean item = Boolean.parseBoolean(itemString);
-            String puzzleString = roomsReader.nextLine();
-            boolean puzzle = Boolean.parseBoolean(puzzleString);
-            String visitedRoomString = roomsReader.nextLine();
-            boolean visitedRoom = Boolean.parseBoolean(visitedRoomString);
-
-            Rooms room = new Rooms(roomID,roomName,roomDesc,north,south,east,west,monster,item,puzzle,visitedRoom);
-            GameMap.addRoom(room);
+        int roomID = 0;
+        String roomName = "";
+        String roomDesc = "";
+        HashMap<String, Integer> possibleExits = new HashMap<>();
+        while (roomsReader.hasNext()) {
+            String result = roomsReader.nextLine();
+            if (result.matches("\\d+")) {
+                roomID = Integer.parseInt(result);
+                roomName = roomsReader.nextLine();
+                roomDesc = roomsReader.nextLine();
+                possibleExits = new HashMap<>();
+            } else {
+                if (!result.trim().equals("")) {
+                    String[] splitter = result.split("\\s+");
+                    possibleExits.put(splitter[0], Integer.parseInt(splitter[1]));
+                }
+            }
+            Rooms room = new Rooms(roomID, roomName, roomDesc, possibleExits);
+            GameMap.addRoom(roomID, room);
         }
 
+
         Scanner sc = new Scanner(System.in);
-        String [] arrMainMenu = {"Start", "Reload", "Help", "Quit"};
-        UserInterface ui = new UserInterface("Welcome to adventure south", arrMainMenu);
+        String[] arrMainMenu = {"Start", "Reload", "Help", "Quit"};
+        //UserInterface ui = new UserInterface("Welcome to adventure south", arrMainMenu);
 
         mainMenu(sc); // launches the main menu and game goes from there
     }
@@ -68,37 +71,35 @@ public class Main {
     //when user selects start game
     public static void startGame(Scanner sc) {
         Player player = new Player();
+        GameMap map = new GameMap();
         boolean playGame = true;
         int roomID = 0;
 
         while (playGame) {
+
             System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomName());
             System.out.println(GameMap.getRooms().get(roomID).getRoomDesc());
             System.out.println("Which direction do you want to go? N S E W?");
-            String playerInput = sc.next();
+            int currentRoom = 1;
+            System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
+            System.out.println(GameMap.getRooms().get(currentRoom).getExitRooms());
 
-            if (playerInput.equalsIgnoreCase("n") || playerInput.equalsIgnoreCase("north")) {
-                String direction = GameMap.getRooms().get(roomID).getNorth();
-                player.map.getRoom(direction);
-            } else if (playerInput.equalsIgnoreCase("s") || playerInput.equalsIgnoreCase("south")) {
-                String direction = GameMap.getRooms().get(roomID).getSouth();
-                player.map.getRoom(direction);
-            } else if (playerInput.equalsIgnoreCase("e") || playerInput.equalsIgnoreCase("east")) {
-                String direction = GameMap.getRooms().get(roomID).getEast();
-                player.map.getRoom(direction);
-            } else if (playerInput.equalsIgnoreCase("w") || playerInput.equalsIgnoreCase("west")) {
-                String direction = GameMap.getRooms().get(roomID).getWest();
-                player.map.getRoom(direction);
-            } else if (playerInput.equalsIgnoreCase("quit")) {
-                System.out.println("Thanks for playing!");
-                playGame = false;
-            } else {
-                System.out.println("Invalid input, please enter a direction (N, S, E, W)");
+            while (playGame) {
+                String playerInput = sc.next();
+                if (GameMap.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
+                    currentRoom = GameMap.getRooms().get(currentRoom).getExitRooms().get(playerInput);
+                    //map.setPlayerLocation(currentRoom);
+                    System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
+                    System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
+                }
+                else {
+                    System.out.println("Not a valid direction");
+                    System.out.println(currentRoom);
+                }
             }
-            GameMap.getRooms().get(roomID).setVisitedRoom(true);
-            roomID = Player.getPlayerLocation();
+
         }
-    }
+        }
 
 
 	/*public static void main(String[] args) {

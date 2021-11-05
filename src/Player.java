@@ -3,9 +3,7 @@ public class Player extends Entity {
 
     private int hp;
     private boolean itemEquipped; //checks to see whether player has item equipped or not
-
     private static int roomID;
-    GameMap map = new GameMap();
 
     public static int getPlayerLocation(){
         return roomID;
@@ -31,7 +29,6 @@ public class Player extends Entity {
         this.itemEquipped = itemEquipped;
     }
 
-    Scanner sc = new Scanner(System.in);
     
     /*public void pickupItem(String item) {
         for (int i = 0; i < getItems().size(); i++){
@@ -138,7 +135,7 @@ public class Player extends Entity {
     public void drop (Player player, GameItem item, GameMap map) {
         if (player.getInventory().contains(item)) {
             getInventory().remove(item);
-            map.getRooms().get(getPlayerLocation()).setItem(true);
+            //map.getRooms().get(getPlayerLocation()).setItem(true);
             System.out.println("You have dropped a: " + item.getItemName() + ".");
         }
         else {
@@ -147,8 +144,8 @@ public class Player extends Entity {
     }
 
     //corresponds to the fight command, brings you to battle environment.
-    public void fight() {
-       if(map.getRooms().get(getPlayerLocation()).hasMonster()){
+    public void fight(Scanner sc, GameMap map) {
+       //if(map.getRooms().get(getPlayerLocation()).hasMonster()){
     		System.out.println("There is a monster in the room, type Inspect to examin it");
     	    	String response = sc.nextLine();
     	    	if(response.equalsIgnoreCase("inspect")) {
@@ -156,7 +153,7 @@ public class Player extends Entity {
     	    	}
     	    	System.out.println("fight or flee ?");
     	    	 if (response.equalsIgnoreCase("flee")) {
-    	    	map.getRooms().get(getPlayerLocation()).setMonster(false);
+    	    	//map.getRooms().get(getPlayerLocation()).setMonster(false);
     	    	}
     	    	 else {
     	    		 // fight here

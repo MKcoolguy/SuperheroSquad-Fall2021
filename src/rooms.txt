@@ -1,220 +1,125 @@
 1
 Florida South
 You arrive in Southern Florida with only a map and a backpack. You are on a mission to explore the South US and learn as much as possible, as you prepare to head North and get a plane ticket.
-2
-0
-0
-0
-false
-true
-false
-false
+North 2
+
 2
 Florida North
 You head North, You come across a Vast swamp. The heat weighs down upon you and you feel slightly itchy.
-4
-1
-0
-0
-true
-false
-true
-false
+North 4
+East 1
+
 3
 Alabama
 Monarch Butterflies captured our mind. Who wants some pecan pie? Motto : “We dare defend our rights”.
-8
-0
-5
-15
-false
-true
-false
-false
+North 8
+South 5
+West 15
+
 4
 Georgia South
 "I can't stop loving you...". 100,000 aquatic animals found home here in over 10 million gallons of water.
-5
-2
-0
-0
-true
-true
-false
-false
+North 5
+East 2
+
 5
 Georgia North
 "I have a dream" ...Stone mountain stands majestically in the distance. Centennial Olympic park welcomed triumphant Olympians.
-9
-4
-6
-3
-false
-false
-true
-false
+North 9
+East 4
+South 6
+West 3
+
 6
 South Carolina
 Barbecue Barbecue Barbecue. Mm..Mm..Mm. Angel Oak ... 500 years old and counting. "Motto: While I breathe, I hope".
-20
-0
-0
-5
-false
-true
-false
-false
+North 20
+West 5
+
 7
 Arkansas
 Be as fit as a fiddle, great adventures are ahead of you... Apples are blossoming. Have an apple each day and keep the Doctor away.
-0
-15
-8
-12
-false
-true
-true
-false
+East 15
+South 8
+West 12
+
 8
 Tennessee West
 "The Volunteer State". Can't make it to Greece? The Parthenon is welcoming you here.
-17
-3
-9
-7
-false
-true
-false
-false
+North 17
+East 3
+South 9
+West 7
+
 9
 Tennessee East
 The Great Smoky Mountain stretches the land... Did you ever find the answer to this, "What's love got to do with it"?
-0
-5
-0
-8
-false
-true
-true
-false
+East 5
+West 8
+
 10
 Texas North
 Six Flags over Texas welcomes you. Wanna ride at 85 mph speeds,Oooooo....
-12
-11
-15
-0
-true
-false
-false
-false
+North 12
+East 11
+South 15
+
 11
 Texas South
 "What's up Doc?". Enjoy a Dr.Pepper for a healthier you. Remember the Alamo. Soldiers fought here for their beliefs.
-10
-0
-14
-0
-false
-false
-true
-false
+North 10
+South 14
+
 12
 Oklahoma
 "okla" and "humma" mean red people. Our motto: Labor conquers all things. Come to "Humpty Dumpty supermarket" for a shopping cart ride.
-0
-10
-7
-0
-false
-true
-false
-false
+East 10
+South 7
+
 13
 Louisiana East
 Come to the land where pelicans plunge from air into the water for a good catch. Hope, recovery and resilience...
-0
-0
-0
-14
-false
-true
-false
-false
+West 14
+
 14
 Louisiana West
 Hooray... Sportsman's Paradise Enjoy a Jazz session. The Mardi Gras festival is welcoming you.
-0
-0
-13
-11
-true
-false
-false
-false
+South 13
+West 11
+
 15
 Mississippi
 Come to the land where Magnolia trees are blooming and Mocking birds singing over 200 songs... "Can't help falling in love..." I can't, Can you?
-7
-0
-3
-10
-false
-true
-false
-false
+North 7
+South 3
+West 10
+
 16
 Virginia
 Cardinals captured every heart.... Thanksgiving traditions sprouted from this land. "Mother of Presidents", eight gentlemen succeeded to the highest office in the land.
-19
-20
-0
-18
-true
-true
-true
-false
+North 19
+East 20
+West 18
+
 17
 Kentucky
 Remember me when you sing "Happy birthday to you". Thoroughbreds are capturing the hearts... Post-its are not going to leave your desk not very soon. The Emancipation Proclamation changed history...
-0
-8
-18
-0
-true
-false
-false
-false
+East 8
+South 18
+
 18
 West Virginia
 Come here on a Mother's Day to this Mountain state prepared for hiking, mountain biking, skiing whitewater rafting and much more. Don't forget a relaxing breakfast for your mother...
-0
-0
-16
-17
-true
-true
-false
-false
+South 16
+West 17
+
 19
 Maryland
 Come to the land where the Post Office system began. From this land the balloon first ascended to the sky. What a moment it was that the "Star-Spangled Banner" was born after seeing the flag still waving during the battle...
-0
-16
-0
-0
-false
-true
-false
-false
+East 16
+
 20
 North Carolina
 Come to the land where 322 miles of shoreline are known as the Graveyard of the Atlantic. Be aware that you don't get trapped inside the Venus Flytraps. Muscadine mother vines produce antioxidant-rich juices and health formulas. Don't get wasted!!!
-16
-6
-0
-0
-true
-false
-true
-false
+North 16
+East 6
