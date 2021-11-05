@@ -80,18 +80,18 @@ public class Main {
             System.out.println("You are in " + GameMap.getRooms().get(roomID).getRoomName());
             System.out.println(GameMap.getRooms().get(roomID).getRoomDesc());
             System.out.println("Which direction do you want to go? N S E W?");
-            int currentRoom = 1;
+
             //System.out.println("You are in " + GameMap.getRooms().get(currentRoom).getRoomName());
 
             while (playGame) {
                 String playerInput = sc.next();
 
                 //navigate rooms command
-                if (GameMap.getRooms().get(currentRoom).getExitRooms().containsKey(playerInput)) {
-                    currentRoom = GameMap.getRooms().get(currentRoom).getExitRooms().get(playerInput);
+                if (GameMap.getRooms().get(roomID).getExitRooms().containsKey(playerInput)) {
+                    roomID = GameMap.getRooms().get(roomID).getExitRooms().get(playerInput);
                     //map.setPlayerLocation(currentRoom);
-                    System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
-                    System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
+                    System.out.println("You are in room: " + GameMap.rooms.get(roomID).getRoomName());
+                    System.out.println(GameMap.rooms.get(roomID).getRoomDesc());
                 }
                 else {
                     System.out.println("Not a valid direction");
