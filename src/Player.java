@@ -52,11 +52,11 @@ public class Player extends Entity {
             System.out.println("Attack : " + getStength());
     }
 
-    public void checkInventory(String input, Player player){
-            if (player.getInventory().size() == 0){
+    public void checkInventory(){
+            if (getInventory().size() == 0){
                 System.out.println("You do not have any items in your inventory");
             } else {
-                UserInterface.displayInventory(player.getInventory());
+                UserInterface.displayInventory(getInventory());
             }
         }
 
@@ -76,23 +76,31 @@ public class Player extends Entity {
         }
     }*/
 
-    public void equipItem(GameItem item) {
-        if (item.getItemType().equalsIgnoreCase("equippable")) {
-            if (!isItemEquipped()) {
-                System.out.println("You have equipped: " + item.getItemName());
-                setItemEquipped(true);
-                //set effect here
-            }
-            else {
-                System.out.println("Unequip your current item before trying to equip " + item.getItemName());
+    public void equipItem(Player player, String itemName) {
+
+        if (player.getInventory().containsKey(itemName)) {
+            GameItem item = player.getInventory().get(itemName).peek();
+
+            if (item.getItemType().equalsIgnoreCase("equippable")) {
+                if (!isItemEquipped()) {
+                    System.out.println("You have equipped: " + item.getItemName());
+                    setItemEquipped(true);
+                    //set effect here
+                } else {
+                    System.out.println("Unequip your current item before trying to equip " + item);
+                }
+            } else {
+                System.out.println("Cannot equip " + itemName + " because it is not of equippable type");
             }
         }
+
         else {
-            System.out.println("Cannot equip " + item.getItemName() + " because it is not of equippable type");
+            System.out.println(itemName + " doesn't exist in inventory");
         }
     }
 
-    public void unequipItem(String item) {
+    public void unequipItem(Player player, String item) {
+        System.out.println(player.getInventory());
         if (isItemEquipped()) {
             System.out.println(item + " has been unequipped.");
             setItemEquipped(false);

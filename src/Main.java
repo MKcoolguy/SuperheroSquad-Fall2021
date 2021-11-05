@@ -15,12 +15,12 @@ public class Main {
             readItems();
             readMonster();  //need to set these up
             readItems();
-            readPuzzle();
+            //readPuzzle();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
+
         Scanner sc = new Scanner(System.in);
         startMenu(sc); // launches the main menu and game goes from there
         //System.out.println(map.getRooms().get(3).getItems().get(0).getItemName());
@@ -80,7 +80,7 @@ public class Main {
             }
             //inventory command
             else if (playerInput.equalsIgnoreCase("i") || playerInput.equalsIgnoreCase("inventory")) {
-                //UserInterface.displayInventory(); pass arrayList inventory in as argument
+                //player.checkInventory();
             }
             //status command
             else if (playerInput.equalsIgnoreCase("status")) {
@@ -89,6 +89,7 @@ public class Main {
             //help command
             else if (playerInput.equalsIgnoreCase("help")) {
                 //feature to display all commands and their descriptions
+                UserInterface.displayHelp();
             }
             //start menu command. will bring player back into start screen
             else if (playerInput.equalsIgnoreCase("start menu") || playerInput.equalsIgnoreCase("Main Menu")) {
@@ -112,12 +113,12 @@ public class Main {
             //equip command. only works if item is not currently equipped
             else if (playerInput.startsWith("equip")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                //player.equipItem(); pass item through argument
+                player.equipItem(player, item);
             }
             //unequip command. only works if item is equipped
             else if (playerInput.startsWith("unequip")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                player.unequipItem(item);
+                player.unequipItem(player, item);
             }
             //drop command
             else if (playerInput.startsWith("drop")) {
@@ -140,6 +141,9 @@ public class Main {
         Scanner scanner = new Scanner(new File("src/Monsters.txt"));
 
         while (scanner.hasNextLine()) {
+
+            String MonsterID = "";
+
             String monsterNum = scanner.nextLine().trim();
             if (monsterNum.trim().equals("")) {
                 monsterNum = scanner.nextLine().trim();
