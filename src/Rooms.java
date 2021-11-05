@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Rooms implements Serializable {
@@ -11,6 +12,7 @@ public class Rooms implements Serializable {
     private String roomName;
     private String roomDesc;
     private HashMap<String, Integer> exitRooms; //possibleExits;
+    private ArrayList<GameItem> items = new ArrayList<>();
 
 
     // Rooms constructor
@@ -56,5 +58,11 @@ public class Rooms implements Serializable {
         this.exitRooms = exitRooms;
     }
 
+    public ArrayList<GameItem> getItems() {
+        return items;
+    }
 
+    public void addItems(GameItem item) {
+        getItems().add(item);
+    }
 }

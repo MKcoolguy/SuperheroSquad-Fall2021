@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-
+    public static GameMap map = new GameMap();
     public static void main(String[] args) {
         try {
             //methods that read from text files.
             readRoom();
             //readMonster(); need to set these up
-            //readItems();
+            readItems();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -21,6 +21,8 @@ public class Main {
 
 
         startMenu(sc); // launches the main menu and game goes from there
+
+        //System.out.println(map.getRooms().get(3).getItems().get(0).getItemName());
     }
 
 
@@ -47,7 +49,7 @@ public class Main {
     //when user selects start game
     public static void startGame(Scanner sc) {
         Player player = new Player();
-        GameMap map = new GameMap();
+        //GameMap map = new GameMap();
         boolean playGame = true;
 
         player.setPlayerLocation(1); //set player location room 1
@@ -120,6 +122,11 @@ public class Main {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 player.drop(player, item, map);
             }
+            //if item is in room print it
+            if (map.getRooms().get(currentRoom).getItems().size() > 0) {
+                //need to print all the items by name.
+                System.out.println(map.getRooms().get(currentRoom).getItems());
+            }
 
             //if monster is in room command
 
@@ -188,28 +195,41 @@ public class Main {
 
     public static void readItems() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("src/GameItems.txt"));
+        String itemID = "";
+        String itemName = "";
+        String itemDesc = "";
+        String itemType = "";
+        String itemPower = "";
         while (scanner.hasNextLine()) {
             String result = scanner.nextLine().trim();
             if (result.matches("^IT[0-9]+")) {
                 //System.out.println(result);
-                String itemID = result;
-                String itemName = scanner.nextLine().trim();
-                String itemDesc = scanner.nextLine().trim();
-                String itemType = scanner.nextLine().trim();
-                String itemPower = scanner.nextLine().trim();
+                itemID = result;
+                itemName = scanner.nextLine().trim();
+                itemDesc = scanner.nextLine().trim();
+                itemType = scanner.nextLine().trim();
+                itemPower = scanner.nextLine().trim();
             }
             else {
                 if (!result.trim().equals("")) {
                    String itemRooms = result;
                    String[] splitter = itemRooms.split("[,]");
                     for (String s : splitter) {
-                        int rooms = Integer.parseInt(s.trim());
-                        System.out.println(rooms);
+                        int room = Integer.parseInt(s.trim());
+                        if (map.getRooms().containsKey(room)) {
+                            //add each item that belongs in this room
+                            if (itemType.equalsIgnoreCase("consumable")) {
+                                Consumable c = new Consumable(itemID, itemName, itemDesc, itemType, itemPower, room);
+                                map.getRooms().get(room).addItems(c);
+                            }
+                            else if (itemType.equals("Equippable")){
+                                Equippable e = new Equippable(itemID, itemName, itemDesc, itemType, itemPower, room);
+                                map.getRooms().get(room).addItems(e);
+                            }
+                        }
                     }
                 }
             }
-            //just need to create item objects now
-            //GameItem items = new GameItem();
         }
     }
 
