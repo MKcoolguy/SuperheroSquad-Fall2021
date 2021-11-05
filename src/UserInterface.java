@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Queue;
 
 public class UserInterface {
 
@@ -46,12 +48,13 @@ public class UserInterface {
         System.out.println("+--------------------+");
     }
 
-    public static void displayInventory(ArrayList<GameItem> inventory) {
+    public static void displayInventory(HashMap<String, Queue<GameItem>> inventory) {
         System.out.println("+--------------------+");
         System.out.println("Inventory");
         System.out.println("+--------------------+");
-        for (GameItem item: inventory) {
-            System.out.println(item);
+        for (Map.Entry<String, Queue<GameItem>> entry : inventory.entrySet()) {
+            //prints each item in inventory with quantity
+            System.out.println(entry.getKey() + " : " + entry.getValue().size());
         }
         System.out.println("+--------------------+");
     }

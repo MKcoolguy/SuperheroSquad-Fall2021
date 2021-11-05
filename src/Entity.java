@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class Entity {
 
@@ -9,8 +11,7 @@ public abstract class Entity {
     private int healthMax;
     private String desc;
     private int stength;
-    private HashMap<String, GameItem> inventory;
-    //ArrayList<GameItem> inventory; //might discard in favor of hashmap
+    private HashMap<String, Queue<GameItem>> inventory;
     private int entityLocation;
 
     public int getId() {
@@ -70,11 +71,11 @@ public abstract class Entity {
 //    }
 
 
-    public HashMap<String, GameItem> getInventory() {
+    public HashMap<String, Queue<GameItem>> getInventory() {
         return inventory;
     }
 
-    public void setInventory(HashMap<String, GameItem> inventory) {
+    public void setInventory(HashMap<String, Queue<GameItem>> inventory) {
         this.inventory = inventory;
     }
 

@@ -44,24 +44,19 @@ public class Player extends Entity {
         }
     }
 
-    //shows uses health,
+    //shows users health,
     public void checkStats(){
             System.out.println("Health : " + getHealth() + "/" + getHealthMax());
             System.out.println("Attack : " + getStength());
     }
 
     public void checkInventory(String input, Player player){
-        if (input.equalsIgnoreCase("inventory")){
             if (player.getInventory().size() == 0){
                 System.out.println("You do not have any items in your inventory");
             } else {
-                System.out.println("Items in your inventory: ");
-                for (int i = 0; i < player.getInventory().size(); i++){
-                    System.out.println(player.getInventory().get(i).getItemName());
-                }
+                UserInterface.displayInventory(player.getInventory());
             }
         }
-    }
 
     /*public void dropItem(String item) {
         for (int i = 0; i < player.getInventory().size(); i++){
