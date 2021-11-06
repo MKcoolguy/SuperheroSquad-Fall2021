@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -63,7 +64,7 @@ public class Player extends Entity {
     }
 
     public void checkInventory(){
-            if (getInventory().size() == 0){
+            if (getInventory().size() == 0) {
                 System.out.println("You do not have any items in your inventory");
             } else {
                 UserInterface.displayInventory(getInventory());
@@ -157,21 +158,135 @@ public class Player extends Entity {
 
     //corresponds to the fight command, brings you to battle environment.
     public void fight(Scanner sc, GameMap map) {
-       //if(map.getRooms().get(getPlayerLocation()).hasMonster()){
-    		System.out.println("There is a monster in the room, type Inspect to examine it");
-    	    	String response = sc.nextLine();
-    	    	if(response.equalsIgnoreCase("inspect")) {
-    	    		System.out.println();  //monster name,des,power
-    	    	}
-    	    	System.out.println("fight or flee ?");
-    	    	 if (response.equalsIgnoreCase("flee")) {
-    	    	//map.getRooms().get(getPlayerLocation()).setMonster(false);
-    	    	}
-    	    	 else {
-    	    		 // fight here
-    	    	 }
+   //if(map.getRooms().get(getPlayerLocation()).hasMonster()){
+		System.out.println("There is a monster in the room, type Inspect to examine it");
+	    	String response = sc.nextLine();
+	    	if(response.equalsIgnoreCase("inspect")) {
+	    		System.out.println();  //monster name,des,power
+	    	}
+	    	System.out.println("fight or flee ?");
+	    	 if (response.equalsIgnoreCase("flee")) {
+	    	//map.getRooms().get(getPlayerLocation()).setMonster(false);
+	    	}
+	    	 else {
+	    		 // fight here
+	    	 }
+	}
+    
+    public ArrayList<Puzzles> solvePuzzle(Scanner sc, ArrayList<Puzzles> puzzles, HashMap<String, GameItem> items) {
+    	if (puzzles.size() > 0) {
+    		Puzzles puzzle = puzzles.get(0); // There will only ever be one puzzle in the room
+    		int cur_puzzle_attempt = -1;
+            int cur_puzzle_max = -1;
+            boolean cur_puzzle_solved = false;
+            String puzzle_answer = "";
+            
+            do {
+        		if (cur_puzzle_attempt < 0) {
+        			// We have not attempted the puzzle yet
+        			cur_puzzle_max = puzzle.getAttempts();
+        			cur_puzzle_attempt = 0;
+        	    	System.out.println("+--------------------+");
+                    System.out.println("YOU HAVE BEEN GIVEN A PUZZLE");
+        		}
+    	    	System.out.println("+--------------------+");
+                System.out.println(puzzle.getQuestion());
+    	    	System.out.println("+--------------------+");
+        		if (cur_puzzle_attempt == cur_puzzle_max - 1) {
+            		System.out.println("HINT: "+puzzle.getHint());
+        	    	System.out.println("+--------------------+");
+        		}
+                System.out.print("Enter your answer: "); // Ask the User for their input
+                puzzle_answer = sc.nextLine().toUpperCase();
+                if (puzzle_answer.equals(puzzle.getAnswer().toUpperCase())) {
+                	// Correct answer
+                	cur_puzzle_solved = true;
+            		System.out.println(puzzle.getMessageCorrect());
+            		// Remove puzzle
+            		puzzles.remove(0);
+            		// Give rewards
+            		ArrayList<ArrayList<String>> rewards = puzzle.getRewards();
+            		for (int i = 0; i < rewards.size(); i++) {
+            			String reward_title = rewards.get(i).get(0);
+            			String reward_amount = rewards.get(i).get(1);
+            			//int reward_amount = Integer.parseInt(rewards.get(i).get(1));
+            			if (reward_title.equals("HP")) {
+            				// HP Reward
+            				if (reward_amount.equals("FULL")) {
+            					this.setHealth(this.getHealthMax());
+            					System.out.println("You have been healed to full health!");
+            				} else {
+            					int health_amount = Integer.parseInt(reward_amount);
+            					int healed_amount = 0;
+            					if (this.getHealth() + health_amount >= this.getHealthMax()) {
+            						healed_amount = this.getHealthMax() - this.getHealth();
+            						this.setHealth(this.getHealthMax());
+                					System.out.println("You have been healed for "+healed_amount+" HP!");
+            					} else {
+            						this.setHealth(this.getHealth() + health_amount);
+            						healed_amount = health_amount;
+                					System.out.println("You have been healed for "+healed_amount+" HP!");
+            					}            					
+            				}
+            			} else {
+            				// Item reward
+            				for (HashMap.Entry<String, GameItem> entry : items.entrySet()) {
+            	        		String key = entry.getKey();
+            	        		GameItem value = entry.getValue();
+            	        		if (key.equals(reward_title)) {
+            	        			if (this.getInventory().containsKey(value.getItemName())) {
+            	        	            this.getInventory().get(value.getItemName()).add(value);
+            	        	        } else {
+            	        	            Queue <GameItem> queue = new LinkedList<>();
+            	        	            queue.add(value);
+            	        	            this.getInventory().put(value.getItemName(), queue);
+            	        	        }
+            	        	        System.out.println("You have been rewarded with a "+value.getItemName() + ", which was added to your inventory");
+            	        		}
+            	        	}
+            			}
+            		}            		
+                } else if (puzzle_answer.equals("HINT")) {
+                	// Show hint
+            		System.out.println("-----");
+            		System.out.println("HINT: "+puzzle.getHint());
+                } else if (puzzle_answer.equals("IGNORE") || puzzle_answer.equals("IGNORE PUZZLE") || puzzle_answer.equals("LEAVE") || puzzle_answer.equals("LEAVE PUZZLE")) {
+                	// Leave the puzzle
+            		System.out.println("-----");
+            		System.out.println("You have left the puzzle!");
+                	cur_puzzle_solved = true;
+                } else {
+                	// Incorrect answer
+                	cur_puzzle_attempt++;
+            		System.out.println("-----");
+            		if (cur_puzzle_attempt < cur_puzzle_max) {
+            			//System.out.println("The answer you provided is wrong, you still have "+(cur_puzzle_max - cur_puzzle_attempt)+" attempts. Try one more time!");
+                		String try_again_answer = "";
+                		boolean try_again = false;
+                		ArrayList<String> acceptable_answers = puzzle.getAcceptableAnswers();
+    					System.out.println(puzzle.getMessageIncorrect()+" ("+String.join("/", acceptable_answers)+")");
+                		if (acceptable_answers.size() == 1 && acceptable_answers.get(0).equals("!")) {
+                			// Force player to try again in this case
+                		} else {
+                			do {
+                				try_again_answer = sc.nextLine().toUpperCase();
+                				if (!acceptable_answers.contains(try_again_answer)) {
+                					System.out.println("Invalid answer!");
+                					System.out.println(puzzle.getMessageIncorrect()+" ("+String.join("/", acceptable_answers)+")");
+                				} else if (try_again_answer.equals("N")) {
+                					cur_puzzle_solved = true;
+                				}
+                			} while(!acceptable_answers.contains(try_again_answer));
+                		}
+            		} else {
+                		System.out.println(puzzle.getMessageFailure());
+            		}
+                }
+    		} while(cur_puzzle_attempt < cur_puzzle_max && !cur_puzzle_solved);
     	}
 
+		return puzzles;
+    }
 
     @Override
     public int dealDamage() {

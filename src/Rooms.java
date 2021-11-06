@@ -76,6 +76,10 @@ public class Rooms implements Serializable {
     public void addPuzzles(Puzzles puzzle) {
         getPuzzles().add(puzzle);
     }
+
+    public void setPuzzles(ArrayList<Puzzles> puzzles) {
+        this.puzzles = puzzles;
+    }
     
     public void explore() {
 		System.out.println("+--------------------+");

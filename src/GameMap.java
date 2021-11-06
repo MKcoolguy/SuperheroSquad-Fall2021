@@ -4,6 +4,7 @@ public class GameMap {
 
     public static HashMap<Integer, Rooms> rooms = new HashMap<>();
     public static HashMap<Integer, Puzzles> puzzles = new HashMap<>();
+    public static HashMap<String, GameItem> items = new HashMap<>();
 
     public HashMap<Integer, Rooms> getRooms() {
         return rooms;
@@ -19,6 +20,18 @@ public class GameMap {
     
     public static HashMap<Integer, Puzzles> getPuzzles() {
     	return puzzles;
+    }
+    
+    public static void setItems(HashMap<String, GameItem> new_items) {
+    	items = new_items;
+    }
+    
+    public static HashMap<String, GameItem> getItems() {
+    	return items;
+    }
+
+    public static void addItem(String itemId, GameItem item) {
+        items.put(itemId, item);
     }
 
 //    public void getRoom(String direction){

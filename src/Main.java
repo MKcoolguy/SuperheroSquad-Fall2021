@@ -45,6 +45,9 @@ public class Main {
     //when user selects start game
     public static void startGame(Scanner sc) {
         Player player = new Player();
+        player.setHealth(50);
+        player.setHealthMax(200);
+        
         //GameMap map = new GameMap();
         boolean playGame = true;
 
@@ -72,7 +75,7 @@ public class Main {
             }
             //inventory command
             else if (playerInput.equalsIgnoreCase("i") || playerInput.equalsIgnoreCase("inventory")) {
-                //player.checkInventory();
+                player.checkInventory();
             }
             //status command
             else if (playerInput.equalsIgnoreCase("status")) {
@@ -118,6 +121,13 @@ public class Main {
             else if (playerInput.startsWith("drop")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 player.drop(player, item, map);
+            }
+            //solve puzzle
+            else if (playerInput.equalsIgnoreCase("solve puzzle")) {
+            	ArrayList<Puzzles> puzzle_result = player.solvePuzzle(sc, map.getRooms().get(currentRoom).getPuzzles(), map.getItems());
+            	map.getRooms().get(currentRoom).setPuzzles(puzzle_result);
+                System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
+                System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
             }
             //if monster is in room command
 
@@ -205,6 +215,15 @@ public class Main {
                 itemDesc = scanner.nextLine().trim();
                 itemType = scanner.nextLine().trim();
                 itemPower = scanner.nextLine().trim();
+
+                // Add item to list of available items, this is needed when giving out Puzzle rewards
+                if (itemType.equalsIgnoreCase("consumable")) {
+                    Consumable c = new Consumable(itemID, itemName, itemDesc, itemType, itemPower, -1);
+                    GameMap.addItem(itemID, c);
+                } else if (itemType.equals("Equippable")) {
+                    Equippable e = new Equippable(itemID, itemName, itemDesc, itemType, itemPower, -1);
+                    GameMap.addItem(itemID, e);
+                }
             } else {
                 if (!result.trim().equals("")) {
                     String itemRooms = result;

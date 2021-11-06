@@ -34,7 +34,7 @@ Incorrect, try again?
 Y/N
 Puzzle failed. The correct answer is Atlanta.
 Correct
-Bus Ticket
+IT3
 1
 
 4
@@ -88,5 +88,5 @@ Puzzle failed, try again later.
 Correct
 HP
 FULL
-Plane Ticket
+IT4
 1
