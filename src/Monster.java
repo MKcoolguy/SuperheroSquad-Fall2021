@@ -12,6 +12,12 @@ public class Monster extends Entity implements Serializable {
 	String monsterAttack;   //Butter-butter bodyslam
 	String monsterRewardCarried;  //HP or attack potion
 
+	
+
+	public Monster(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
+		super(id, name, health, healthMax, desc, stength, entityLocation, inventory);
+	}
+
 	public String getMonsterAttack() {
 		return monsterAttack;
 	}
@@ -27,11 +33,6 @@ public class Monster extends Entity implements Serializable {
 	public void setMonsterRewardCarried(String monsterRewardCarried) {
 		this.monsterRewardCarried = monsterRewardCarried;
 	}
-
-	public Monster(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
-		super(id, name, health, healthMax, desc, stength, entityLocation, inventory);
-	}
-
 	@Override
 	public int dealDamage() {
 		// TODO Auto-generated method stub
