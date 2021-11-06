@@ -11,10 +11,10 @@ public abstract class Entity {
     private int healthMax;
     private String desc;
     private int stength;
-    private HashMap<String, Queue<GameItem>> inventory;
+    private HashMap<String, Queue<GameItem>> inventory = new HashMap<>();
     private int entityLocation;
 
-    public Entity(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation) {
+    public Entity(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
         this.id = id;
         this.name = name;
         this.health = health;
@@ -22,6 +22,7 @@ public abstract class Entity {
         this.desc = desc;
         this.stength = stength;
         this.entityLocation = entityLocation;
+        this.inventory = inventory;
     }
 
     public Entity() {

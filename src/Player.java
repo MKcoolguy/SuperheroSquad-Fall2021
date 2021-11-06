@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -6,8 +7,8 @@ public class Player extends Entity {
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
 
-    public Player(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation) {
-        super(id, name, health, healthMax, desc, stength, entityLocation);
+    public Player(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
+        super(id, name, health, healthMax, desc, stength, entityLocation, inventory);
     }
 
     public Player() {
@@ -87,7 +88,7 @@ public class Player extends Entity {
 
     public void equipItem(Player player, String itemName) {
 
-        if (player.getInventory().containsKey(itemName)) {
+        if (player.getInventory().containsKey(itemName) && getInventory() != null) {
             GameItem item = player.getInventory().get(itemName).peek();
 
             if (item.getItemType().equalsIgnoreCase("equippable")) {

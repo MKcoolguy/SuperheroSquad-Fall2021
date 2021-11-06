@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public abstract class GameItem implements Serializable    {
 

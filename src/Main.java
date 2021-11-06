@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static GameMap map = new GameMap();
@@ -24,7 +21,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         startMenu(sc); // launches the main menu and game goes from there
         //System.out.println(map.getRooms().get(3).getItems().get(0).getItemName());
-        startGame(sc);
 
     }
 
