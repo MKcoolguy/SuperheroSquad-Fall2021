@@ -1,6 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,74 +57,79 @@ public class Puzzles implements Serializable {
 	// Class Methods
 	
 	// Load Puzzles from File
-	public static ArrayList<Puzzles> loadPuzzlesFromFile(String filename) {
-		Scanner s = new Scanner(Main.class.getResourceAsStream(filename));
-		ArrayList<Puzzles> puzzles = new ArrayList<Puzzles>();
-		
-		int cur_line_num = 1;
-		String reward_type = "";
-		Puzzles cur_puzzle = new Puzzles();
-        while(s.hasNextLine()) {
-        	String line = s.nextLine();
-        	if (line.equals("")) {
-        		puzzles.add(cur_puzzle);
-        		cur_line_num = 1;
-        		cur_puzzle = new Puzzles();
-        		continue;
-        	} else {
-        		switch(cur_line_num) {
-        			case 1: // id
-        				cur_puzzle.setId(line);
-        				break;
-        			case 2: // room_id
-        				cur_puzzle.setRoomId(line);
-        				break;
-        			case 3: // question
-        				cur_puzzle.setQuestion(line);
-        				break;
-        			case 4: // answer
-        				cur_puzzle.setAnswer(line);
-        				break;
-        			case 5: // hint
-        				cur_puzzle.setHint(line);
-        				break;
-        			case 6: // attempts
-        				cur_puzzle.setAttempts(Integer.parseInt(line));
-        				break;
-        			case 7: // message_incorrect
-        				cur_puzzle.setMessageIncorrect(line);
-        				break;
-        			case 8: // acceptable_answers
-        				cur_puzzle.setAcceptableAnswers(cur_puzzle.parseAcceptableAnswers(line, "/"));
-        				break;
-        			case 9: // message_failure
-        				cur_puzzle.setMessageFailure(line);
-        				break;
-        			case 10: // message_correct
-        				cur_puzzle.setMessageCorrect(line);
-        				break;
-    				default:
-    					// rewards
-    					if (reward_type.equals("")) {
-    						// New reward
-    						reward_type = line;
-    					} else {
-    						// Continuing reward, set amount
-    						cur_puzzle.addReward(reward_type, line);
-    						reward_type = ""; // Done with this reward, reset it for the next possible reward
-    					}
-    					break;
-        		}
-        		cur_line_num++;
-        	}
-        }
-        s.close();
+	public static HashMap<Integer, Puzzles> loadPuzzlesFromFile(String filename) {
+		HashMap<Integer, Puzzles> puzzles = new HashMap<>();
+		try {
+			Scanner s = new Scanner(new File(filename));			
+			int cur_puzzle_index = 0;
+			int cur_line_num = 1;
+			String reward_type = "";
+			Puzzles cur_puzzle = new Puzzles();
+	        while(s.hasNextLine()) {
+	        	String line = s.nextLine();
+	        	if (line.equals("")) {
+	        		puzzles.put(cur_puzzle_index, cur_puzzle);
+	        		cur_line_num = 1;
+	        		cur_puzzle_index++;
+	        		cur_puzzle = new Puzzles();
+	        		continue;
+	        	} else {
+	        		switch(cur_line_num) {
+	        			case 1: // id
+	        				cur_puzzle.setId(line);
+	        				break;
+	        			case 2: // room_id
+	        				cur_puzzle.setRoomId(line);
+	        				break;
+	        			case 3: // question
+	        				cur_puzzle.setQuestion(line);
+	        				break;
+	        			case 4: // answer
+	        				cur_puzzle.setAnswer(line);
+	        				break;
+	        			case 5: // hint
+	        				cur_puzzle.setHint(line);
+	        				break;
+	        			case 6: // attempts
+	        				cur_puzzle.setAttempts(Integer.parseInt(line));
+	        				break;
+	        			case 7: // message_incorrect
+	        				cur_puzzle.setMessageIncorrect(line);
+	        				break;
+	        			case 8: // acceptable_answers
+	        				cur_puzzle.setAcceptableAnswers(cur_puzzle.parseAcceptableAnswers(line, "/"));
+	        				break;
+	        			case 9: // message_failure
+	        				cur_puzzle.setMessageFailure(line);
+	        				break;
+	        			case 10: // message_correct
+	        				cur_puzzle.setMessageCorrect(line);
+	        				break;
+	    				default:
+	    					// rewards
+	    					if (reward_type.equals("")) {
+	    						// New reward
+	    						reward_type = line;
+	    					} else {
+	    						// Continuing reward, set amount
+	    						cur_puzzle.addReward(reward_type, line);
+	    						reward_type = ""; // Done with this reward, reset it for the next possible reward
+	    					}
+	    					break;
+	        		}
+	        		cur_line_num++;
+	        	}
+	        }
+	        s.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Not found");
+		}
         
         return puzzles;
 	}
 	
 	// Debug readout of Puzzles
-	public static void __debugView(ArrayList<Puzzles> puzzles) {
+	public static void __debugView(HashMap<Integer, Puzzles> puzzles) {
 		System.out.println("-----------------------");
 		System.out.println("DEBUG: LIST OF PUZZLES:");
 		System.out.println("-----------------------");

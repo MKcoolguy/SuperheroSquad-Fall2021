@@ -8,12 +8,10 @@ public class Main {
         try {
             //methods that read from text files.
             readRoom();
-            //readMonster(); need to set these up
             readItems();
             readMonster();  //need to set these up
             readItems();
-            //readPuzzle();
-
+            readPuzzle();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -59,7 +57,6 @@ public class Main {
         System.out.println("Which direction do you want to go? N S E W?");
 
         while (playGame) {
-
 
             String playerInput = sc.nextLine();
 
@@ -161,7 +158,7 @@ public class Main {
         String roomName = "";
         String roomDesc = "";
         HashMap<String, Integer> possibleExits = new HashMap<>();
-        while (roomsReader.hasNext()) {
+        while (roomsReader.hasNextLine()) {
             String result = roomsReader.nextLine();
             if (result.matches("\\d+")) {
                 roomID = Integer.parseInt(result);
@@ -236,28 +233,7 @@ public class Main {
     }
 
     public static void readPuzzle() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("src/Puzzles.txt"));
-        while (scanner.hasNextLine()) {
-            String puzzleNum = scanner.nextLine().trim();
-            if (puzzleNum.trim().equals("")) {
-                puzzleNum = scanner.nextLine().trim();
-
-            }
-            String puzzleLocation = scanner.nextLine().trim();
-            String puzzleQuestion = scanner.nextLine().trim();
-            String puzzleAnswer = scanner.nextLine().trim();
-            String puzzleHint = scanner.nextLine().trim();
-            int attemptsAllowed = Integer.parseInt(scanner.nextLine().trim());
-            String incorrectAnsMessg = scanner.nextLine().trim();
-            // Y/N
-            String playerOption = scanner.nextLine().trim();    //Y/n
-            String failedPuzzleMessg = scanner.nextLine().trim();
-            String rightAnswerMessg = scanner.nextLine().trim();
-            String PuzzleRewardType = scanner.nextLine().trim();    //hp/attack potions
-            // int puzzleReward = Integer.parseInt(scanner.nextLine().trim());    // number
-            String puzzleReward = scanner.nextLine().trim();
-
-        }
+    	GameMap.setPuzzles(Puzzles.loadPuzzlesFromFile("src/Puzzles.txt"));
     }
 
     // save and load

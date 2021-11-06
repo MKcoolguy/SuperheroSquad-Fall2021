@@ -3,6 +3,7 @@ import java.util.HashMap;
 public class GameMap {
 
     public static HashMap<Integer, Rooms> rooms = new HashMap<>();
+    public static HashMap<Integer, Puzzles> puzzles = new HashMap<>();
 
     public HashMap<Integer, Rooms> getRooms() {
         return rooms;
@@ -10,6 +11,14 @@ public class GameMap {
 
     public static void addRoom(int roomid, Rooms room) {
         rooms.put(roomid, room);
+    }
+    
+    public static void setPuzzles(HashMap<Integer, Puzzles> new_puzzles) {
+    	puzzles = new_puzzles;
+    }
+    
+    public static HashMap<Integer, Puzzles> getPuzzles() {
+    	return puzzles;
     }
 
 //    public void getRoom(String direction){
