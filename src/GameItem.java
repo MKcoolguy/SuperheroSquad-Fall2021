@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public abstract class GameItem implements Serializable    {
 
@@ -9,18 +10,28 @@ public abstract class GameItem implements Serializable    {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private String id;
     private String itemName;
     private String itemDesc;
-    private String itemType; // Consumable or equippable type
+    private String itemType;
+    private String itemPower;
+    private int itemLocation;
     private ArrayList<GameItem> items;
-    private String itemLocation; //why not make this int?
 
-    public int getId() {
+    public GameItem(String id, String itemName, String itemDesc, String itemType, String itemPower, int itemLocation) {
+        this.id = id;
+        this.itemName = itemName;
+        this.itemDesc = itemDesc;
+        this.itemType = itemType;
+        this.itemPower = itemPower;
+        this.itemLocation = itemLocation;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,6 +59,14 @@ public abstract class GameItem implements Serializable    {
         this.itemDesc = itemDesc;
     }
 
+    public String getItemPower() {
+        return itemPower;
+    }
+
+    public void setItemPower(String itemPower) {
+        this.itemPower = itemPower;
+    }
+
     public ArrayList<GameItem> getItems() {
         return items;
     }
@@ -56,11 +75,11 @@ public abstract class GameItem implements Serializable    {
         this.items = items;
     }
 
-    public String getItemLocation() {
+    public int getItemLocation() {
         return itemLocation;
     }
 
-    public void setItemLocation(String itemLocation) {
+    public void setItemLocation(int itemLocation) {
         this.itemLocation = itemLocation;
     }
 
