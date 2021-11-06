@@ -6,6 +6,15 @@ public class Player extends Entity {
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
 
+    public Player(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation) {
+        super(id, name, health, healthMax, desc, stength, entityLocation);
+    }
+
+    public Player() {
+        super();
+    }
+
+
     public int getPlayerLocation(){
         return roomID;
     }

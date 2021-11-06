@@ -14,6 +14,20 @@ public abstract class Entity {
     private HashMap<String, Queue<GameItem>> inventory;
     private int entityLocation;
 
+    public Entity(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation) {
+        this.id = id;
+        this.name = name;
+        this.health = health;
+        this.healthMax = healthMax;
+        this.desc = desc;
+        this.stength = stength;
+        this.entityLocation = entityLocation;
+    }
+
+    public Entity() {
+
+    }
+
     public int getId() {
         return id;
     }
