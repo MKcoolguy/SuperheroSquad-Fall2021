@@ -1,5 +1,5 @@
-P1
-FL2
+1
+2
 What popular drink was named after the Florida Gators?
 Gatorade
 Kind of like powerade...
@@ -11,8 +11,8 @@ Correct
 HP
 100
 
-P2
-GA2
+2
+5
 What's the famous iconic fruit of the state of Georgia?
 Peach
 Sweet and fuzzy, light orange color
@@ -24,8 +24,8 @@ Correct
 HP
 250
 
-P3
-TN1
+3
+9
 The capital city of Georgia, holding the world's busiest airport.
 Atlanta
 The airport and city's letters are ATL.
@@ -37,8 +37,8 @@ Correct
 Bus Ticket
 1
 
-P4
-AK
+4
+7
 The capital of Arkansas is this little town.
 Little Rock
 Small stone, petit boulder
@@ -50,8 +50,8 @@ Correct
 HP
 250
 
-P5
-TX3
+5
+11
 A famous battle happened in this southern Texas city, now known as San Antonio
 The Alamo
 Remember the Al...
@@ -63,8 +63,8 @@ Correct
 HP
 250
 
-P6
-VA
+6
+16
 Virginia has had more of this than any other state.
 Presidents
 POTUS 
@@ -76,8 +76,8 @@ Correct
 HP
 FULL
 
-P7
-NC
+7
+20
 Who were the two brothers who made machines fly the first time?
 Wright brothers
 Not the left brothers

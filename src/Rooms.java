@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Rooms implements Serializable {
     /**
@@ -13,6 +15,7 @@ public class Rooms implements Serializable {
     private String roomDesc;
     private HashMap<String, Integer> exitRooms; //possibleExits;
     private ArrayList<GameItem> items = new ArrayList<>();
+    private ArrayList<Puzzles> puzzles = new ArrayList<>();
 
 
     // Rooms constructor
@@ -51,7 +54,7 @@ public class Rooms implements Serializable {
     }
 
     public HashMap<String, Integer> getExitRooms() {
-        return exitRooms;
+        return this.exitRooms;
     }
 
     public void setExitRooms(HashMap<String, Integer> exitRooms) {
@@ -64,5 +67,59 @@ public class Rooms implements Serializable {
 
     public void addItems(GameItem item) {
         getItems().add(item);
+    }
+
+    public ArrayList<Puzzles> getPuzzles() {
+        return puzzles;
+    }
+
+    public void addPuzzles(Puzzles puzzle) {
+        getPuzzles().add(puzzle);
+    }
+    
+    public void explore() {
+		System.out.println("+--------------------+");
+    	// Show adjacent rooms
+    	HashMap<String, Integer> exitRooms = this.getExitRooms();
+    	String[] dir = {"North", "East", "South", "West"};
+    	List<String> directions = Arrays.asList(dir);
+		System.out.println("ADJACENT ROOMS:");
+    	if (exitRooms.size() > 0) {
+        	for (HashMap.Entry<String, Integer> entry : exitRooms.entrySet()) {
+        		String key = entry.getKey();
+        		int value = entry.getValue();
+        		if (directions.contains(entry.getKey())) {
+        			System.out.println(key);
+        		}
+        	}
+    	} else {
+    		System.out.println("There are no exits for this room"); // In theory, should never show up
+    	}
+    	
+    	// Show items
+    	ArrayList<GameItem> items = this.getItems();
+		System.out.println("-----");
+		System.out.println("ITEMS");
+    	if (items.size() > 0) {
+    		for (int i = 0; i < items.size(); i++) {
+    			System.out.println(items.get(i).getItemName());
+    		}
+    	} else {
+    		System.out.println("There are no items in this room");
+    	}
+    	
+    	// Show monsters TODO, need Monster implementation, can probably copy Show Items section and modify it for Monsters
+    	
+    	// Show puzzles
+    	ArrayList<Puzzles> puzzles = this.getPuzzles();
+    	int puzzles_amount = puzzles.size();
+		System.out.println("-----");
+		System.out.println("PUZZLES");
+    	if (puzzles_amount > 0) {
+    		System.out.println("There "+(puzzles_amount == 1 ? "is" : "are")+" "+puzzles_amount+" puzzle"+(puzzles_amount == 1 ? "" : "s")+" in this room!");
+    	} else {
+    		System.out.println("There are no puzzles in this room");
+    	}
+    	System.out.println("+--------------------+");
     }
 }

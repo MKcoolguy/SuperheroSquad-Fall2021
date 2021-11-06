@@ -13,8 +13,8 @@ public class Puzzles implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String id;
-	private String room_id;
+	private int id;
+	private int room_id;
 	private String question;
 	private String answer;
 	private String hint;
@@ -27,7 +27,7 @@ public class Puzzles implements Serializable {
 	private ArrayList<ArrayList<String>> rewards;
 
 	// Constructors
-	public Puzzles(String id, String room_id, String question, String answer, String hint, 
+	public Puzzles(int id, int room_id, String question, String answer, String hint, 
 			int attempts, String message_correct, String message_incorrect, String message_failure, 
 			ArrayList<String> acceptable_answers, ArrayList<ArrayList<String>> rewards) {
 		this.setId(id);
@@ -76,10 +76,10 @@ public class Puzzles implements Serializable {
 	        	} else {
 	        		switch(cur_line_num) {
 	        			case 1: // id
-	        				cur_puzzle.setId(line);
+	        				cur_puzzle.setId(Integer.parseInt(line));
 	        				break;
 	        			case 2: // room_id
-	        				cur_puzzle.setRoomId(line);
+	        				cur_puzzle.setRoomId(Integer.parseInt(line));
 	        				break;
 	        			case 3: // question
 	        				cur_puzzle.setQuestion(line);
@@ -120,6 +120,7 @@ public class Puzzles implements Serializable {
 	        		cur_line_num++;
 	        	}
 	        }
+	        puzzles.put(cur_puzzle_index, cur_puzzle);
 	        s.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Not found");
@@ -156,18 +157,18 @@ public class Puzzles implements Serializable {
 	// Setters & Getters
 	
 	// id
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 	
 	// room_id
-	public void setRoomId(String room_id) {
+	public void setRoomId(int room_id) {
 		this.room_id = room_id;
 	}
-	public String getRoomId() {
+	public int getRoomId() {
 		return this.room_id;
 	}
 	

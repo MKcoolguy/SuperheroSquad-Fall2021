@@ -10,8 +10,7 @@ public class Main {
             readRoom();
             readItems();
             readMonster();  //need to set these up
-            readItems();
-            readPuzzle();
+            readPuzzles();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -96,8 +95,10 @@ public class Main {
             //exits the game and doesn't save current progress
             else if (playerInput.equalsIgnoreCase("exit")) {
                 System.exit(0);
-            } else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
-                //list room contents with descriptions
+            } 
+            //explore command - list room contents with descriptions
+            else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
+            	GameMap.rooms.get(currentRoom).explore();            	
             }
             //consume item command
             else if (playerInput.startsWith("use")) {
@@ -118,12 +119,6 @@ public class Main {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 player.drop(player, item, map);
             }
-            //if item is in room print it
-            if (map.getRooms().get(currentRoom).getItems().size() > 0) {
-                //need to print all the items by name.
-                System.out.println(map.getRooms().get(currentRoom).getItems());
-            }
-
             //if monster is in room command
 
         }
@@ -232,8 +227,14 @@ public class Main {
         }
     }
 
-    public static void readPuzzle() throws FileNotFoundException {
-    	GameMap.setPuzzles(Puzzles.loadPuzzlesFromFile("src/Puzzles.txt"));
+    public static void readPuzzles() throws FileNotFoundException {
+    	HashMap<Integer, Puzzles> puzzles = Puzzles.loadPuzzlesFromFile("src/Puzzles.txt");
+    	GameMap.setPuzzles(puzzles);
+    	for (int i = 0; i < puzzles.size(); i++) {
+    		Puzzles cur_puzzle = puzzles.get(i);
+    		int roomId = cur_puzzle.getRoomId();
+    		map.getRooms().get(roomId).addPuzzles(cur_puzzle);
+    	}
     }
 
     // save and load
