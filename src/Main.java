@@ -101,7 +101,9 @@ public class Main {
             } 
             //explore command - list room contents with descriptions
             else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
-            	GameMap.rooms.get(currentRoom).explore();            	
+                if (map.getRooms().containsKey(currentRoom)) {
+                    System.out.println(map.getRooms().get(currentRoom).getItems());
+                }
             }
             //consume item command
             else if (playerInput.startsWith("use")) {
