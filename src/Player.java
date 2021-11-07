@@ -34,16 +34,16 @@ public class Player extends Entity {
     }
 
     
-    public void pickupItem(Player player, GameItem item) {
+    public void pickupItem(GameItem item) {
         //if item is already in inventory then just add one more to the count
-        if (player.getInventory().containsKey(item.getItemName())) {
-            player.getInventory().get(item.getItemName()).add(item);
+        if (getInventory().containsKey(item.getItemName())) {
+           getInventory().get(item.getItemName()).add(item);
         }
         //if item doesn't exist in inventory
         else {
             Queue <GameItem> queue = new LinkedList<>();
             queue.add(item);
-            player.getInventory().put(item.getItemName(), queue);
+            getInventory().put(item.getItemName(), queue);
         }
         System.out.println(item.getItemName() + " has been picked up and added to your inventory");
         //remove item from map
