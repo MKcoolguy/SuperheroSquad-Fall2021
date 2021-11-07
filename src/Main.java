@@ -101,8 +101,8 @@ public class Main {
             } 
             //explore command - list room contents with descriptions
             else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
-                if (map.getRooms().containsKey(currentRoom)) {
-                    System.out.println(map.getRooms().get(currentRoom).getItems());
+                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                    System.out.println(item.getItemName());
                 }
             }
             //consume item command
@@ -123,6 +123,14 @@ public class Main {
             else if (playerInput.startsWith("drop")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 player.drop(player, item, map);
+            }
+            else if (playerInput.startsWith("pickup")) {
+                String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
+                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                    if (itemName.equalsIgnoreCase(item.getItemName())) {
+                        player.pickupItem(item);
+                    }
+                }
             }
             //solve puzzle
             else if (playerInput.equalsIgnoreCase("solve puzzle")) {
