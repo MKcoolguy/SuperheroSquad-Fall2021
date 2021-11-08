@@ -107,15 +107,17 @@ public class Player extends Entity {
     }
 
     //consumeItem method corresponds to the "use" command
-    public void consumeItem(Player player, GameItem item) {
-        if (player.getInventory().containsKey(item.getItemName())) {
+    public void consumeItem(String itemName) {
+        if (getInventory().containsKey(itemName)) {
+            GameItem item = getInventory().get(itemName).peek();
+
             if (item.getItemType().equalsIgnoreCase("consumable")) {
                 //setEffect here
-                if (player.getInventory().get(item.getItemName()).size() == 1) { //if there's only one of the item then remove entirely from inventory.
-                    player.getInventory().remove(item.getItemName());
+                if (getInventory().get(item.getItemName()).size() == 1) { //if there's only one of the item then remove entirely from inventory.
+                    getInventory().remove(item.getItemName());
                 }
                 else {
-                    player.getInventory().get(item.getItemName()).poll(); //remove only one if there's more than one item
+                    getInventory().get(item.getItemName()).poll(); //remove only one if there's more than one item
                 }
             }
             else {
@@ -123,15 +125,20 @@ public class Player extends Entity {
             }
         }
         else {
-            System.out.println("Inventory does not contain: " + item.getItemName());
+            System.out.println("Inventory does not contain: " + itemName);
         }
     }
 
     //drop method corresponds to the drop command
-    public void drop (Player player, String item, GameMap map) {
+    public void drop (Player player, String item, Rooms currentRoom) {
         if (player.getInventory().containsKey(item)) {
             //add back to map.
-            getInventory().remove(item);
+            currentRoom.getItems().add(player.getInventory().get(item).poll());
+
+            if (getInventory().get(item).size() == 0) {
+                getInventory().remove(item);
+            }
+
             System.out.println("You have dropped: " + item + ".");
         }
         else {

@@ -107,7 +107,8 @@ public class Main {
             }
             //consume item command
             else if (playerInput.startsWith("use")) {
-                //player.consumeItem(player, ); pass item through argument
+                String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
+                player.consumeItem(item);
             }
             //equip command. only works if item is not currently equipped
             else if (playerInput.startsWith("equip")) {
@@ -122,7 +123,7 @@ public class Main {
             //drop command
             else if (playerInput.startsWith("drop")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                player.drop(player, item, map);
+                player.drop(player, item, map.getRooms().get(currentRoom));
             }
             //pickup command
             else if (playerInput.startsWith("pickup")) {
