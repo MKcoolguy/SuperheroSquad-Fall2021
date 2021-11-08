@@ -136,4 +136,8 @@ public class Rooms implements Serializable {
     public Monster getMonster() {
     	return monsters.get(0);     
     }
+    public Monster removeMonster() {
+    	return monsters.remove(0);     
+    }
+    
 }

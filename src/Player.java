@@ -174,7 +174,7 @@ public class Player extends Entity {
     }
 
     //corresponds to the fight command, brings you to battle environment.
-    public void fight(Scanner sc, GameMap map) {
+    public void fight(Scanner sc, GameMap map,Player player) {
     	
       	 
  	   if(map.getRooms().get(getPlayerLocation()).hasMonster()){
@@ -212,29 +212,47 @@ public class Player extends Entity {
  	                	System.out.println(" the monster's health is "+ currentMonsterHp);
  	                	
  	                	
- 	                	if(monster.getHealth() <=0) {  //player is dead
+ 	                	if(monster.getHealth() <=0) {  //monster is dead
  	                		System.out.println("You have defeated the monster");
- 	                		map.getRooms().get(getPlayerLocation()).hasMonster();  //make it false
+ 	                		map.getRooms().get(getPlayerLocation()).removeMonster(); 
+ 	                		//make it false
  	                	    // allow the player to unequip
  	                		
  	                		
  	                	}
  	                	else {
  	                		int playerCurrentHp = monster.getStength() - getHp();  //default 1000
+ 	                		
  	                		System.out.println("the player has encountred " + monster.getStength() + " damage");
  	                		System.out.println("Your health is " + playerCurrentHp);
  	                	}
- 	                	if(getHp()<=0) {
+ 	                	if(getHp()<=0) {   //player is dead
  	                		System.out.println(" game over, you are dead");
- 	                		System.exit(0);;
+ 	                		System.exit(0);
  	                	}
  	                	//give player a chance to use item
  	                	
  	                	if(getHp()< 10) {
  	                		System.out.println(" you might want to use your items");
  	                		response= sc.nextLine();
- 	       				 if(response.equalsIgnoreCase("use")) {
+ 	       				 if(response.startsWith("use")) {
  	       					 // use item feature
+ 	       					String item = response.substring(response.indexOf(" ")).trim();
+ 	       					 player.consumeItem(item, player,player.getPlayerLocation());
+ 	       				
+ 	       				 }
+ 	       				 else if(response.equalsIgnoreCase("attack")) {
+ 	       					Random attackRandom = new Random();
+ 	       				int ran = attackRandom.nextInt(10);
+ 	       				  if(ran <=7) {
+ 	       					currentMonsterHp -= getStength();     
+ 	       				  }
+ 	       				  else {
+ 	       					playerCurrentHp -= monster.getStength();
+ 	       				  }
+ 	       					  
+ 	       				
+ 	       				
  	       				 }
  	                		
  	                	}
