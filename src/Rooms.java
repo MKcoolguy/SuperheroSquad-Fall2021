@@ -80,6 +80,14 @@ public class Rooms implements Serializable {
     public void setPuzzles(ArrayList<Puzzles> puzzles) {
         this.puzzles = puzzles;
     }
+
+    public ArrayList<Monster> getMonsters() {
+        return monsters;
+    }
+
+    public void addMonster(Monster monster) {
+        getMonsters().add(monster);
+    }
     
     public void explore() {
 		System.out.println("+--------------------+");
@@ -113,6 +121,16 @@ public class Rooms implements Serializable {
     	}
     	
     	// Show monsters TODO, need Monster implementation, can probably copy Show Items section and modify it for Monsters
+        ArrayList<Monster> monsters = this.getMonsters();
+        System.out.println("-----");
+        System.out.println("Monsters");
+        if (items.size() > 0) {
+            for (int i = 0; i < monsters.size(); i++) {
+                System.out.println(monsters.get(i).getName());
+            }
+        } else {
+            System.out.println("There are no Monsters in this room");
+        }
     	
     	// Show puzzles
     	ArrayList<Puzzles> puzzles = this.getPuzzles();

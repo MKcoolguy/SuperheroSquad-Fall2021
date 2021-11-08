@@ -179,7 +179,7 @@ public class Main {
         
         while (scanner.hasNextLine()) {
             String result = scanner.nextLine().trim();
-            if (result.matches("^IT[0-9]+")) {
+            if (result.matches("^M[0-9]+")) {
                 
                 iD = result;
                 name = scanner.nextLine().trim();
@@ -189,12 +189,10 @@ public class Main {
                 strength = Integer.parseInt(scanner.nextLine().trim());
                 rewardType = scanner.nextLine().trim();
                 monsterLocation  = Integer.parseInt(scanner.nextLine().trim());
-                
-                }
-            Monster monster = new Monster(iD,name,health,healthMax,desc,strength,monsterLocation,inventory,monsterAttack,rewardType);
-            Rooms roomMonster =  map.getRooms().get(monsterLocation);
-               
-            roomMonster.addMonsterToRoom(monster); 
+                Monster monster = new Monster(iD,name,health,healthMax,desc,strength,monsterLocation,inventory,monsterAttack,rewardType);
+                Rooms roomMonster =  map.getRooms().get(monsterLocation);
+                map.getRooms().get(monsterLocation).addMonster(monster);
+            }
         }
     }
 
