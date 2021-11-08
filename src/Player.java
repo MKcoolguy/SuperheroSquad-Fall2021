@@ -106,11 +106,18 @@ public class Player extends Entity {
 
     //consumeItem method corresponds to the "use" command
     public void consumeItem(String itemName) {
+
         if (getInventory().containsKey(itemName)) {
             GameItem item = getInventory().get(itemName).peek();
 
+
             if (item.getItemType().equalsIgnoreCase("consumable")) {
                 //setEffect here
+                if (item.getItemPower().trim().endsWith("HP")) {
+                    setHealth(250 + getHealth());
+                    System.out.println(item.getItemPower());
+                }
+
                 if (getInventory().get(item.getItemName()).size() == 1) { //if there's only one of the item then remove entirely from inventory.
                     getInventory().remove(item.getItemName());
                 }

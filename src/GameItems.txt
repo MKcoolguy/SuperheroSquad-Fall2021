@@ -42,26 +42,26 @@ IT7
 Peach
 Having a juicy and sweet Georgia peach will lift your mood and boost your energy
 Consumable
-+250HP
++250 HP
 4
 
 IT8
 Mother’s day Breakfast
 Enjoying a mother’s day breakfast at the land where this celebration has begun will definitely make you stronger.
 Consumable
-+250HP
++250 HP
 18
 
 IT9
 Thanksgiving Dinner
 You have come so far ...Take rest and have a relaxing thanksgiving dinner...This will make you energized.
 Consumable
-+250HP
++250 HP
 16, 2
 
 IT10
 Jazz Concert Ticket
 What a fun-filled adventure so far… You are invited for a mesmerizing and relaxing jazz concert...This will rev up your spirits
 Consumable
-+250HP
++250 HP
 13
