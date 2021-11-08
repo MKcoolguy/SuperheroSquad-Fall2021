@@ -9,8 +9,26 @@ public class Player extends Entity {
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
     public int movesMade = 0; //counter for amount of times a player goes to a different room
+    public int strength = 50;
+    public int Hp = 500;
+    
+    public int getStrength() {
+		return strength;
+	}
 
-    public Player(String id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
+
+	public int getHp() {
+		return Hp;
+	}
+
+	public void setHp(int hp) {
+		Hp = hp;
+	}
+
+	public Player(String id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
         super(id, name, health, healthMax, desc, stength, entityLocation, inventory);
     }
 
@@ -181,12 +199,43 @@ public class Player extends Entity {
  	            }
  		    	 else {
  		    		 
- 		    		 System.out.println("The battle has began");
+ 		    		 System.out.println("You have failed to escape , the battle has began");
 
  	                //loop for battle environment 
  	                 while (monster.getHealth() > 0) {
+ 	                	int currentMonsterHp = monster.getHealthMax()- getStrength();
+ 	                	monster.setHealth(currentMonsterHp);
+ 	                	System.out.println(" the monster's health is "+ currentMonsterHp);
+ 	                	
+ 	                	
+ 	                	if(monster.getHealth() <=0) {  //player is dead
+ 	                		System.out.println("You have defeated the monster");
+ 	                		map.getRooms().get(getPlayerLocation()).hasMonster();  //make it false
+ 	                	    // allow the player to unequip
+ 	                		
+ 	                		
+ 	                	}
+ 	                	else {
+ 	                		int playerCurrentHp = monster.getStength() - getHp();  //default 1000
+ 	                		System.out.println("the player has encountred " + monster.getStength() + " damage");
+ 	                		System.out.println("Your health is " + playerCurrentHp);
+ 	                	}
+ 	                	if(getHp()<=0) {
+ 	                		System.out.println(" game over, you are dead");
+ 	                		System.exit(0);;
+ 	                	}
+ 	                	//give player a chance to use item
+ 	                	
+ 	                	if(getHp()< 10) {
+ 	                		System.out.println(" you might want to use your items");
+ 	                		response= sc.nextLine();
+ 	       				 if(response.equalsIgnoreCase("use")) {
+ 	       					 // use item feature
+ 	       				 }
+ 	                		
+ 	                	}
  	                    
- 	                 }
+ 	                 } //while loop ends
  		    		
  		    		 // fight here
  		    	 }
@@ -199,10 +248,14 @@ public class Player extends Entity {
  	            
  	            }
 
- 		    } //room has monster end
+
+ 		    	} //room has monster end
  	            
  	   }
  	
+ 	    
+ 
+ 
  	    
     public ArrayList<Puzzles> solvePuzzle(Scanner sc, ArrayList<Puzzles> puzzles, HashMap<String, GameItem> items) {
     	if (puzzles.size() > 0) {
