@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main {
     public static GameMap map = new GameMap();
+    static  ArrayList<Monster> monsters = new ArrayList<Monster>();
 
     public static void main(String[] args) {
         try {
@@ -160,39 +161,41 @@ public class Main {
         }
 
     }
-/*
+
     public static void readMonster() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("src/Monsters.txt"));
 
+        String iD = "";
+        String name = "";
+        String desc = "";
+        String monsterAttack = "";
+        int health = 0;
+        String rewardType = "";
+        int monsterLocation = 0;
+        
+        int healthMax = 0;
+        int strength = 0;
+        
         while (scanner.hasNextLine()) {
-
-            String MonsterID = "";
-
-            String monsterNum = scanner.nextLine().trim();
-            if (monsterNum.trim().equals("")) {
-                monsterNum = scanner.nextLine().trim();
-            }
-            int id = scanner.nextLine().trim()
-            String name = scanner.nextLine().trim();
-            String desc = scanner.nextLine().trim();
-            String monsterAttack = scanner.nextLine().trim();
-            int health = Integer.parseInt(scanner.nextLine().trim());
-            int healthMax = 0;
-            int strength = 0;    //? isn't this same as hp
-            String monsterRewardCarried = scanner.nextLine().trim();  // attack / Hp potion
-            int monsterLocation = Integer.parseInt(scanner.nextLine().trim());
-            int entityLocation = Integer.parseInt(scanner.nextLine().trim());
-            HashMap<String, Queue<GameItem>> inventory = null;
-            
-            ArrayList<Monster> monsters = new ArrayList<Monster>();
-            
-            Monster monster = new Monster(id,name,health,healthMax,desc,strength,entityLocation,inventory);
+            String result = scanner.nextLine().trim();
+            if (result.matches("^IT[0-9]+")) {
+                
+                iD = result;
+                name = scanner.nextLine().trim();
+                desc = scanner.nextLine().trim();
+                monsterAttack = scanner.nextLine().trim();
+                health  = Integer.parseInt(scanner.nextLine().trim());  //health
+                rewardType = scanner.nextLine().trim();
+                monsterLocation  = Integer.parseInt(scanner.nextLine().trim());
+                
+                }
+           // Monster monster = new Monster(id,name,health,healthMax,desc,strength,entityLocation,inventory);
               
             monsters.add(monster);
             
         }
     }
-*/
+
     public static void readRoom() throws FileNotFoundException {
         Scanner roomsReader = new Scanner(new File("src/rooms.txt"));
 
