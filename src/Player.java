@@ -69,22 +69,6 @@ public class Player extends Entity {
             }
         }
 
-    /*public void dropItem(String item) {
-        for (int i = 0; i < player.getInventory().size(); i++){
-            if (item.equalsIgnoreCase(player.getInventory().get(i).getItemName())){
-                items.add(player.getInventory().get(i));
-                // need to set the item location to the room the player is in
-                player.getInventory().remove(i);
-                // need to set the item to true so that an item is added to the room the player is in.
-                for (i = 0; i < getItems().size(); i++){
-                    if (item.equalsIgnoreCase(getItems().get(i).getItemName())){
-                        System.out.println(getItems().get(i).getItemName() + " has been dropped and removed from your inventory");
-                    }
-                }
-            }
-        }
-    }*/
-
     public void equipItem(Player player, String itemName) {
 
         if (player.getInventory().containsKey(itemName) && getInventory() != null) {
@@ -146,8 +130,7 @@ public class Player extends Entity {
         if (player.getInventory().containsKey(item)) {
             //add back to map.
             getInventory().remove(item);
-            //map.getRooms().get(getPlayerLocation()).setItem(true);
-            System.out.println("You have dropped a: " + item + ".");
+            System.out.println("You have dropped: " + item + ".");
         }
         else {
             System.out.println("Inventory does not contain " + item + ".");

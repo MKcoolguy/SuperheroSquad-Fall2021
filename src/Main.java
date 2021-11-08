@@ -134,11 +134,16 @@ public class Main {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 player.drop(player, item, map);
             }
+            //pickup command
             else if (playerInput.startsWith("pickup")) {
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                Iterator<GameItem> iter = map.getRooms().get(currentRoom).getItems().iterator();
+
+                while (iter.hasNext()) {
+                    GameItem item = iter.next();
                     if (itemName.equalsIgnoreCase(item.getItemName())) {
                         player.pickupItem(item);
+                        iter.remove();
                     }
                 }
             }
