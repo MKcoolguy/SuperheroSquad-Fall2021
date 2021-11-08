@@ -9,7 +9,7 @@ public class Main {
             //methods that read from text files.
             readRoom();
             readItems();
-            //readMonster();  //need to set these up
+            readMonster();  //need to set these up
             readPuzzles();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
