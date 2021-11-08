@@ -6,34 +6,34 @@ Map
 
 
 
-Game Desscription
+*Game Desscription
 
 
 
 
 
-Commands
+*Commands
 
 
 
 
 
 
-Contributers
+*Contributers
 
 
 
-Project status
-
-
-
-
-Project Background 
+*Project status
 
 
 
 
-Coding Standard/Convention/Style
+*Project Background 
+
+
+
+
+*Coding Standard/Convention/Style
 
 
 
