@@ -9,7 +9,7 @@ public class Main {
             //methods that read from text files.
             readRoom();
             readItems();
-            //readMonster();  //need to set these up
+            readMonster();  //need to set these up
             readPuzzles();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -124,7 +124,7 @@ public class Main {
             //equip command. only works if item is not currently equipped
             else if (playerInput.startsWith("equip")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                player.equipItem(player, item);
+                player.equipItem(player, item, map);
             }
             //unequip command. only works if item is equipped
             else if (playerInput.startsWith("unequip")) {
