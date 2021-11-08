@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public abstract class Entity {
 
-    private int id;
+    private String id;
     private String name;
     private int health;
     private int healthMax;
@@ -14,7 +14,7 @@ public abstract class Entity {
     private HashMap<String, Queue<GameItem>> inventory = new HashMap<>();
     private int entityLocation;
 
-    public Entity(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
+    public Entity(String id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
         this.id = id;
         this.name = name;
         this.health = health;
@@ -29,11 +29,11 @@ public abstract class Entity {
 
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

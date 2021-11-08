@@ -175,6 +175,7 @@ public class Main {
         
         int healthMax = 0;
         int strength = 0;
+        HashMap<String, Queue<GameItem>> inventory = new HashMap<>();
         
         while (scanner.hasNextLine()) {
             String result = scanner.nextLine().trim();
@@ -185,14 +186,15 @@ public class Main {
                 desc = scanner.nextLine().trim();
                 monsterAttack = scanner.nextLine().trim();
                 health  = Integer.parseInt(scanner.nextLine().trim());  //health
+                strength = Integer.parseInt(scanner.nextLine().trim());
                 rewardType = scanner.nextLine().trim();
                 monsterLocation  = Integer.parseInt(scanner.nextLine().trim());
                 
                 }
-           // Monster monster = new Monster(id,name,health,healthMax,desc,strength,entityLocation,inventory);
-              
-            //monsters.add(monster);
-            
+            Monster monster = new Monster(iD,name,health,healthMax,desc,strength,monsterLocation,inventory,monsterAttack,rewardType);
+            Rooms roomMonster =  map.getRooms().get(monsterLocation);
+               
+            roomMonster.addMonsterToRoom(monster); 
         }
     }
 

@@ -16,7 +16,7 @@ public class Rooms implements Serializable {
     private HashMap<String, Integer> exitRooms; //possibleExits;
     private ArrayList<GameItem> items = new ArrayList<>();
     private ArrayList<Puzzles> puzzles = new ArrayList<>();
-
+    private ArrayList<Monster> monsters = new ArrayList<Monster>();
 
     // Rooms constructor
 
@@ -125,5 +125,15 @@ public class Rooms implements Serializable {
     		System.out.println("There are no puzzles in this room");
     	}
     	System.out.println("+--------------------+");
+    }
+    public  void addMonsterToRoom(Monster monster) {
+    	monsters.add(monster);
+    }
+    public boolean hasMonster() {
+		
+    	return !monsters.isEmpty();
+    }
+    public Monster getMonster() {
+    	return monsters.get(0);     
     }
 }

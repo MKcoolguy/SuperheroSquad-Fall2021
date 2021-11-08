@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Scanner;
 public class Player extends Entity {
 
@@ -9,7 +10,7 @@ public class Player extends Entity {
     private static int roomID;
     public int movesMade = 0; //counter for amount of times a player goes to a different room
 
-    public Player(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
+    public Player(String id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
         super(id, name, health, healthMax, desc, stength, entityLocation, inventory);
     }
 
@@ -152,21 +153,57 @@ public class Player extends Entity {
 
     //corresponds to the fight command, brings you to battle environment.
     public void fight(Scanner sc, GameMap map) {
-   //if(map.getRooms().get(getPlayerLocation()).hasMonster()){
-		System.out.println("There is a monster in the room, type Inspect to examine it");
-	    	String response = sc.nextLine();
-	    	if(response.equalsIgnoreCase("inspect")) {
-	    		System.out.println();  //monster name,des,power
-	    	}
-	    	System.out.println("fight or flee ?");
-	    	 if (response.equalsIgnoreCase("flee")) {
-	    	//map.getRooms().get(getPlayerLocation()).setMonster(false);
-	    	}
-	    	 else {
-	    		 // fight here
-	    	 }
-	}
-    
+    	
+      	 
+ 	   if(map.getRooms().get(getPlayerLocation()).hasMonster()){
+ 		   
+ 	    	Monster monster = map.getRooms().get(getPlayerLocation()).getMonster();
+ 	    	
+ 			System.out.println("There is a monster in the room, type Inspect to examine it");
+ 		    	String response = sc.nextLine();
+ 		    	if(response.equalsIgnoreCase("inspect")) {
+ 		    		
+ 		    		System.out.println(monster.getName());  //monster name,des,power
+ 		    		System.out.println(monster.getDesc());
+ 		    		System.out.println(monster.getMonsterAttack());
+ 		    	}
+ 		    	System.out.println("fight or flee ?");
+
+ 	            if (response.equalsIgnoreCase("flee")) {
+
+ 	            boolean flee = false;
+ 	            Random rand = new Random();
+ 		    	//0 means flee successful
+ 		    	int randNum = rand.nextInt(2);          
+ 		    
+ 	            if (randNum == 0) {
+ 	                //flee
+ 	            }
+ 		    	 else {
+ 		    		 
+ 		    		 System.out.println("The battle has began");
+
+ 	                //loop for battle environment 
+ 	                 while (monster.getHealth() > 0) {
+ 	                    
+ 	                 }
+ 		    		
+ 		    		 // fight here
+ 		    	 }
+ 	         }//end if flee statemnt 
+ 	            else if (response.equalsIgnoreCase("fight")){
+ 	                 //loop for battle environment 
+ 	                 while (monster.getHealth() > 0) {
+ 	                    
+ 	                 }
+ 	            
+ 	            }
+
+ 		    } //room has monster end
+ 	            
+ 	   }
+ 	
+ 	    
     public ArrayList<Puzzles> solvePuzzle(Scanner sc, ArrayList<Puzzles> puzzles, HashMap<String, GameItem> items) {
     	if (puzzles.size() > 0) {
     		Puzzles puzzle = puzzles.get(0); // There will only ever be one puzzle in the room
