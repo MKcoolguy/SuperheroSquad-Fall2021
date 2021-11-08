@@ -49,11 +49,9 @@ public class Player extends Entity {
         //remove item from map
     }
 
-    public void inspectItem(String input, GameItem item) {
-        for (int i = 0; i < item.getItems().size(); i++){
-            if (input.equalsIgnoreCase(item.getItems().get(i).getItemName())){
-                System.out.println(item.getItems().get(i).getItemDesc());
-            }
+    public void inspectItem(GameItem item) {
+        if (getInventory().containsKey(item.getItemName())){
+            System.out.println(item.getItemDesc() + " Effect: " + item.getItemPower() + ". Type: " + item.getItemType());
         }
     }
 

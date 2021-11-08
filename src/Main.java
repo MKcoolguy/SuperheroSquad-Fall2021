@@ -101,14 +101,24 @@ public class Main {
             } 
             //explore command - list room contents with descriptions
             else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
-                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                /*for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
                     System.out.println(item.getItemName());
-                }
+                }*/
+                GameMap.rooms.get(currentRoom).explore();
             }
             //consume item command
             else if (playerInput.startsWith("use")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 player.consumeItem(item);
+            }
+            //inspect item command
+            else if (playerInput.startsWith("inspect")) {
+                String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
+                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                    if (itemName.equalsIgnoreCase(item.getItemName())) {
+                        player.inspectItem(item);
+                    }
+                }
             }
             //equip command. only works if item is not currently equipped
             else if (playerInput.startsWith("equip")) {
