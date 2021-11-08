@@ -70,7 +70,7 @@ public class Player extends Entity {
             }
         }
 
-    public void equipItem(Player player, String itemName) {
+    public void equipItem(Player player, String itemName, GameMap map) {
 
         if (player.getInventory().containsKey(itemName) && getInventory() != null) {
             GameItem item = player.getInventory().get(itemName).peek();
@@ -80,6 +80,10 @@ public class Player extends Entity {
                     System.out.println("You have equipped: " + item.getItemName());
                     setItemEquipped(true);
                     //set effect here
+                    Equippable e = (Equippable) item;
+                    e.setEquippableEffect(player, e.getItemPower(), map);
+                    System.out.println(e.getItemPower());
+
                 } else {
                     System.out.println("Unequip your current item before trying to equip " + item);
                 }
