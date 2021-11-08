@@ -34,7 +34,6 @@ public class Player extends Entity {
         this.itemEquipped = itemEquipped;
     }
 
-    
     public void pickupItem(GameItem item) {
         //if item is already in inventory then just add one more to the count
         if (getInventory().containsKey(item.getItemName())) {
@@ -106,7 +105,7 @@ public class Player extends Entity {
     }
 
     //consumeItem method corresponds to the "use" command
-    public void consumeItem(String itemName) {
+    public void consumeItem(String itemName, Player player, int currentRoom) {
 
         if (getInventory().containsKey(itemName)) {
             GameItem item = getInventory().get(itemName).peek();
@@ -114,10 +113,9 @@ public class Player extends Entity {
 
             if (item.getItemType().equalsIgnoreCase("consumable")) {
                 //setEffect here
-                if (item.getItemPower().trim().endsWith("HP")) {
-                    setHealth(250 + getHealth());
-                    System.out.println(item.getItemPower());
-                }
+                Consumable c = (Consumable) item;
+                c.setConsumableEffect(player, item.getItemPower(), currentRoom);
+
 
                 if (getInventory().get(item.getItemName()).size() == 1) { //if there's only one of the item then remove entirely from inventory.
                     getInventory().remove(item.getItemName());

@@ -110,7 +110,7 @@ public class Main {
             //consume item command
             else if (playerInput.startsWith("use")) {
                 String item = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                player.consumeItem(item);
+                player.consumeItem(item, player, currentRoom);
             }
             //inspect item command
             else if (playerInput.startsWith("inspect")) {
