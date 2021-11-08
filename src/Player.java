@@ -7,6 +7,7 @@ public class Player extends Entity {
 
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
+    public int movesMade = 0; //counter for amount of times a player goes to a different room
 
     public Player(int id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
         super(id, name, health, healthMax, desc, stength, entityLocation, inventory);

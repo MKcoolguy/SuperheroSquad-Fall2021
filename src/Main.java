@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Main {
     public static GameMap map = new GameMap();
-    static  ArrayList<Monster> monsters = new ArrayList<Monster>();
 
     public static void main(String[] args) {
         try {
@@ -69,6 +68,7 @@ public class Main {
                 player.setPlayerLocation(currentRoom); //sets player location to currentRoom
                 System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
                 System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
+                player.movesMade++;
             }
             //menu command
             else if (playerInput.equalsIgnoreCase("m") || playerInput.equalsIgnoreCase("menu")) {
@@ -80,7 +80,7 @@ public class Main {
             }
             //status command
             else if (playerInput.equalsIgnoreCase("status")) {
-                //UserInterface.displayStatus(); need to implement features to pass through arguments
+                UserInterface.displayStatus(player.movesMade, player.getHealth());
             }
             //help command
             else if (playerInput.equalsIgnoreCase("help")) {
@@ -191,7 +191,7 @@ public class Main {
                 }
            // Monster monster = new Monster(id,name,health,healthMax,desc,strength,entityLocation,inventory);
               
-            monsters.add(monster);
+            //monsters.add(monster);
             
         }
     }

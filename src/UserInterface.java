@@ -59,14 +59,12 @@ public class UserInterface {
         System.out.println("+--------------------+");
     }
 
-    public static void displayStatus(int score, int movesMade, int playerHP ) {
+    public static void displayStatus(int movesMade, int playerHP ) {
         System.out.println("+--------------------+");
         System.out.println("Status");
         System.out.println("+--------------------+");
-        System.out.println("Score : " + score);
         System.out.println("Moves made : " + movesMade);
         System.out.println("Player HP : " + playerHP);
-        System.out.println("Back");
         System.out.println("+--------------------+");
     
     }
