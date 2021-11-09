@@ -125,7 +125,7 @@ public class Main implements Serializable{
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
                     if (itemName.equalsIgnoreCase(item.getItemName())) {
-                        player.inspectItem(item);
+                        player.inspectItem(player, itemName);
                     }
                 }
                 for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
