@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public abstract class Entity {
+public abstract class Entity implements Serializable {
 
     private String id;
     private String name;

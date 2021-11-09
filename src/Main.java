@@ -1,8 +1,9 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main implements Serializable{
     public static GameMap map = new GameMap();
+
 
     public static void main(String[] args) {
         try {
@@ -31,6 +32,12 @@ public class Main {
             startGame(sc);
         } else if (playerInput.equalsIgnoreCase("reload")) {
             //reload game feature goes here
+            try {
+                loadGame();
+                startGame(sc);
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found");
+            }
         } else if (playerInput.equalsIgnoreCase("help")) {
             // help feature
         } else if (playerInput.equalsIgnoreCase("quit")) {
@@ -45,9 +52,10 @@ public class Main {
     //when user selects start game
     public static void startGame(Scanner sc) {
         Player player = new Player();
-        player.setHealth(50);
-        player.setHealthMax(200);
-        
+        player.setHealth( 500);
+        player.setHealthMax(500);
+        player.setStength(50);
+
         //GameMap map = new GameMap();
         boolean playGame = true;
 
@@ -99,7 +107,7 @@ public class Main {
             //exits the game and doesn't save current progress
             else if (playerInput.equalsIgnoreCase("exit")) {
                 System.exit(0);
-            } 
+            }
             //explore command - list room contents with descriptions
             else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
                 /*for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
@@ -115,7 +123,26 @@ public class Main {
             //inspect item command
             else if (playerInput.startsWith("inspect")) { //item MUST be in inventory to inspect
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                player.inspectItem(player,itemName);
+                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                    if (itemName.equalsIgnoreCase(item.getItemName())) {
+                        player.inspectItem(item);
+                    }
+                }
+                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
+                    if (itemName.equalsIgnoreCase(item.getItemName())) {
+                        System.out.println(item.getItemDesc());
+                    }
+                }
+                for (int i = 0; i < map.getRooms().get(currentRoom).getMonsters().size(); i++) {
+                    if (itemName.equalsIgnoreCase(map.getRooms().get(currentRoom).getMonster().getName())) {
+                        player.fight(sc, map, player);
+                    }
+                }
+//                for (Monster monster : map.getRooms().get(currentRoom).getMonsters()) {
+//                    if (itemName.equalsIgnoreCase(monster.getName())) {
+//                            player.fight(sc, map, player);
+//                    }
+//                }
             }
             //equip command. only works if item is not currently equipped
             else if (playerInput.startsWith("equip")) {
@@ -136,13 +163,19 @@ public class Main {
             else if (playerInput.startsWith("pickup")) {
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 Iterator<GameItem> iter = map.getRooms().get(currentRoom).getItems().iterator();
-
                 while (iter.hasNext()) {
                     GameItem item = iter.next();
                     if (itemName.equalsIgnoreCase(item.getItemName())) {
                         player.pickupItem(item);
                         iter.remove();
                     }
+                }
+            }
+            else if (playerInput.equalsIgnoreCase("save")) {
+                try {
+                    saveGame(player);
+                } catch (FileNotFoundException e) {
+                    System.out.println("file not found");
                 }
             }
             //solve puzzle
@@ -168,15 +201,15 @@ public class Main {
         int health = 0;
         String rewardType = "";
         int monsterLocation = 0;
-        
+
         int healthMax = 0;
         int strength = 0;
         HashMap<String, Queue<GameItem>> inventory = new HashMap<>();
-        
+
         while (scanner.hasNextLine()) {
             String result = scanner.nextLine().trim();
             if (result.matches("^M[0-9]+")) {
-                
+
                 iD = result;
                 name = scanner.nextLine().trim();
                 desc = scanner.nextLine().trim();
@@ -294,7 +327,7 @@ public class Main {
     }
 
     // save and load
-    public static void saveGame() throws FileNotFoundException {
+    public static void saveGame(Player player) throws FileNotFoundException {
         //using seralization
         //output stream to save
         //object = room ,since everything is in the room
@@ -303,8 +336,9 @@ public class Main {
         try {
             ObjectOutputStream output = new ObjectOutputStream(file);
             output.flush();
+            output.writeObject(map);
+            output.writeObject(player);
             output.close();
-            //output.writeObject(room);
             System.out.println("Game saved");
 
         } catch (IOException e) {
@@ -324,14 +358,12 @@ public class Main {
         FileInputStream fileInput = new FileInputStream("saveGame.txt");  // need to use .Sav file
         try {
             ObjectInputStream input = new ObjectInputStream(fileInput);
-            //room = (Room) input.readObject();
-
+            map = (GameMap) input.readObject();
             input.close();
-
-            System.out.println("Game loded");
+            System.out.println("Game loaded");
 
         } catch (Exception e) {
-            System.out.println("can't load data");
+            System.out.println("Can't load data");
         }
 
     }
