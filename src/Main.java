@@ -185,7 +185,9 @@ public class Main implements Serializable{
                 System.out.println("You are in room: " + GameMap.rooms.get(currentRoom).getRoomName());
                 System.out.println(GameMap.rooms.get(currentRoom).getRoomDesc());
             }
-            //if monster is in room command
+            else if (playerInput.equalsIgnoreCase("restart")) {
+                startGame(sc);
+            }
 
         }
 
