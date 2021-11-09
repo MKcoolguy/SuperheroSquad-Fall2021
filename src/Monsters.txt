@@ -58,7 +58,7 @@ Hailing from the mountains of West Virginia, He crushes any who trespass his lan
 Great Hammer/ The Mountain Shaker
 500
 50
-HP Potion, Attack Potion
+HP Potion
 18
 
 M8

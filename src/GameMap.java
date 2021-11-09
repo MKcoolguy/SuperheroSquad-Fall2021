@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class GameMap {
+public class GameMap implements Serializable {
 
     public static HashMap<Integer, Rooms> rooms = new HashMap<>();
     public static HashMap<Integer, Puzzles> puzzles = new HashMap<>();

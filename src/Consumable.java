@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Consumable extends GameItem{
+public class Consumable extends GameItem implements Serializable {
 
     private String consumableEffect;
     private String consumableType; //to determine whether its attack or HP potion

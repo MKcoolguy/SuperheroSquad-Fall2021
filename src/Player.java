@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -5,7 +6,7 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Player extends Entity {
+public class Player extends Entity implements Serializable {
 
     private boolean itemEquipped; //checks to see whether player has item equipped or not
     private static int roomID;
@@ -22,11 +23,11 @@ public class Player extends Entity {
     }
 
     public int getHp() {
-        return Hp;
+        return getHealth();
     }
 
     public void setHp(int hp) {
-        Hp = hp;
+        Hp = getHealth();
     }
 
     public Player(String id, String name, int health, int healthMax, String desc, int stength, int entityLocation, HashMap<String, Queue<GameItem>> inventory) {
@@ -66,7 +67,6 @@ public class Player extends Entity {
             getInventory().put(item.getItemName(), queue);
         }
         System.out.println(item.getItemName() + " has been picked up and added to your inventory");
-        //remove item from map
     }
 
     public void inspectItem(GameItem item) {
@@ -172,93 +172,78 @@ public class Player extends Entity {
 
         if (map.getRooms().get(getPlayerLocation()).hasMonster()) {
             Monster monster = map.getRooms().get(getPlayerLocation()).getMonster();
-
-            System.out.println("There is a monster in the room, type Inspect to examine it");
-            String response = sc.nextLine();
-
-            if (response.equalsIgnoreCase("inspect")) {
-
-                System.out.println(monster.getName());  //monster name,des,power
-                System.out.println(monster.getDesc());
-                System.out.println(monster.getMonsterAttack());
-            }
+            System.out.println(monster.getName());  //monster name,des,power
+            System.out.println(monster.getDesc());
+            System.out.println(monster.getMonsterAttack());
 
             System.out.println("fight or flee ?");
+            boolean flee = false;
+            Random rand = new Random();
+            //0 means flee successful
+            int randNum = rand.nextInt(2);
+            String response = sc.nextLine();
 
-            if (response.equalsIgnoreCase("flee")) {
-                boolean flee = false;
-                Random rand = new Random();
-                //0 means flee successful
-                int randNum = rand.nextInt(2);
+            if (response.equalsIgnoreCase("flee") && randNum == 0) {
+                System.out.println("You have escaped");
+            }
+            else if (response.equalsIgnoreCase("fight") || randNum != 0) {
 
-                if (randNum == 0) {
-                    //flee
+                if (response.equalsIgnoreCase("flee")) {
+                    System.out.println("You have failed to escape , the battle has began");
                 }
                 else {
-                    System.out.println("You have failed to escape , the battle has began");
-                    //loop for battle environment
-                    int currentMonsterHp = monster.getHealth();
-                    int playerCurrentHp = player.getHealth();
-                    while (monster.getHealth() > 0) {
-                        monster.setHealth(currentMonsterHp);
-                        System.out.println(" the monster's health is " + currentMonsterHp);
+                    System.out.println("The battle has begun");
+                }
+                //loop for battle environment
+                boolean battle = true;
 
+                while (battle) {
+                    response = sc.nextLine();
+                    System.out.println(" the monster's health is " + monster.getHealth());
 
-                        if (monster.getHealth() <= 0) {  //monster is dead
-                            System.out.println("You have defeated the monster");
-                            map.getRooms().get(getPlayerLocation()).removeMonster();
-                            //make it false
-                            // allow the player to unequip
-
-
+                    if (player.getHealth() <= 0) {   //player is dead
+                        System.out.println(" game over, you are dead");
+                        System.exit(0);
+                    }
+                    if (monster.getHealth() <= 0) {  //monster is dead
+                        System.out.println("You have defeated the monster");
+                        if (monster.createGameItem() != null) {
+                            player.pickupItem(monster.createGameItem());
+                        }
+                        map.getRooms().get(getPlayerLocation()).removeMonster(monster);
+                        battle = false;
+                        //make it false
+                        // allow the player to unequip
+                    }
+                    if (monster.getHealth() > 0) { //monster still alive
+                        System.out.println("Your health is " + player.getHealth());
+                    }
+                    //give player a chance to use item
+                    if (response.startsWith("use")) {
+                        // use item feature
+                        String item = response.substring(response.indexOf(" ")).trim();
+                        player.consumeItem(item, player, player.getPlayerLocation());
+                    }
+                    if (response.equalsIgnoreCase("attack")) {
+                        Random attackRandom = new Random();
+                        int ran = attackRandom.nextInt(10);
+                        if (ran <= 7) {
+                            monster.setHealth(monster.getHealth() - player.getStength());
                         }
                         else {
-                            System.out.println("the player has encountred " + monster.getStength() + " damage");
-                            System.out.println("Your health is " + playerCurrentHp);
+                            player.setHealth(player.getHealth() - monster.getStength());
+                            System.out.println("Monster hit you with " + monster.getMonsterAttack());
                         }
-                        if (getHp() <= 0) {   //player is dead
-                            System.out.println(" game over, you are dead");
-                            System.exit(0);
-                        }
-                        //give player a chance to use item
-                        if (getHp() < 10) {
-                            System.out.println(" you might want to use your items");
-                            response = sc.nextLine();
-                            if (response.startsWith("use")) {
-                                // use item feature
-                                String item = response.substring(response.indexOf(" ")).trim();
-                                player.consumeItem(item, player, player.getPlayerLocation());
+                    } // end attack if
 
-                            }
-                            else if (response.equalsIgnoreCase("attack")) {
-                                Random attackRandom = new Random();
-                                int ran = attackRandom.nextInt(10);
-                                if (ran <= 7) {
-                                    currentMonsterHp -= getStength();
-                                } else {
-                                    playerCurrentHp -= monster.getStength();
-                                }
-                            }
-
-                        }
-
-                    } //while loop ends
-
-                    // fight here
-                }
-            }//end if flee statemnt
-            else if (response.equalsIgnoreCase("fight")) {
-                //loop for battle environment
-                while (monster.getHealth() > 0) {
-
-                }
+                } //while loop ends
 
             }
-
-
-        } //room has monster end
+        }//end if flee statemnt
 
     }
+
+
 
 
     public ArrayList<Puzzles> solvePuzzle(Scanner sc, ArrayList<Puzzles> puzzles, HashMap<String, GameItem> items) {

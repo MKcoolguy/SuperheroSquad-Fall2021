@@ -1,8 +1,5 @@
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Rooms implements Serializable {
     /**
@@ -124,7 +121,7 @@ public class Rooms implements Serializable {
         ArrayList<Monster> monsters = this.getMonsters();
         System.out.println("-----");
         System.out.println("Monsters");
-        if (items.size() > 0) {
+        if (monsters.size() > 0) {
             for (int i = 0; i < monsters.size(); i++) {
                 System.out.println(monsters.get(i).getName());
             }
@@ -138,7 +135,7 @@ public class Rooms implements Serializable {
 		System.out.println("-----");
 		System.out.println("PUZZLES");
     	if (puzzles_amount > 0) {
-    		System.out.println("There "+(puzzles_amount == 1 ? "is" : "are")+" "+puzzles_amount+" puzzle"+(puzzles_amount == 1 ? "" : "s")+" in this room!");
+    		System.out.println("There "+(puzzles_amount == 1 ? "is" : "are") + " "+puzzles_amount+" puzzle"+(puzzles_amount == 1 ? "" : "s")+" in this room!");
     	} else {
     		System.out.println("There are no puzzles in this room");
     	}
@@ -154,8 +151,13 @@ public class Rooms implements Serializable {
     public Monster getMonster() {
     	return monsters.get(0);     
     }
-    public Monster removeMonster() {
-    	return monsters.remove(0);     
+    public void removeMonster(Monster monster) {
+        Iterator<Monster> iter = monsters.iterator();
+        while (iter.hasNext()) {
+            if (iter.next().equals(monster)) {
+                iter.remove();
+            }
+        }
     }
     
 }

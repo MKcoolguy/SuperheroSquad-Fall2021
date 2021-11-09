@@ -40,6 +40,22 @@ public class Monster extends Entity implements Serializable {
 		this.rewardType = rewardType;
 	}
 
+	public GameItem createGameItem() {
+		if (rewardType.equalsIgnoreCase("HP Potion")) {
+			Consumable c = new Consumable("IT1","HP Potion","A tasty potion that gives some health back","Consumable","+250 HP",0);
+			return c;
+		}
+		else if (rewardType.equalsIgnoreCase("Attack Potion")) {
+			Consumable c = new Consumable("IT2","Attack Potion","Holding this bottle makes you feel stronger already. Drink to consume the power.","Consumable","50 Attack for current room",0);
+			return c;
+		}
+		else if (rewardType.equalsIgnoreCase("Plane Ticket")) {
+			Equippable e = new Equippable("IT4", "Plane Ticket", "You did it! This ticket lets you go anywhere,anytime. The US is yours to explore.","Equippable", "Player wins the game",478748);
+			return e;
+		}
+		return null;
+	}
+
 	@Override
 	public int dealDamage() {
 		// TODO Auto-generated method stub

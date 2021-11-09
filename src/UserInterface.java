@@ -36,7 +36,7 @@ public class UserInterface {
     }
 
     public static void displayStartMenu() {
-        String [] message = {"Start","Status","Help","Quit"};
+        String [] message = {"Start","Reload","Help","Quit"};
         System.out.println("+--------------------+");
         System.out.println("Welcome to Adventure South Game");
         System.out.println("+--------------------+");

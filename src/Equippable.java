@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Equippable extends GameItem {
+public class Equippable extends GameItem implements Serializable {
 
     private String equippableEffect;
 
