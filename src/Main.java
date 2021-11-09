@@ -55,7 +55,7 @@ public class Main implements Serializable{
         player.setHealth( 500);
         player.setHealthMax(500);
         player.setStength(50);
-        
+
         //GameMap map = new GameMap();
         boolean playGame = true;
 
@@ -107,7 +107,7 @@ public class Main implements Serializable{
             //exits the game and doesn't save current progress
             else if (playerInput.equalsIgnoreCase("exit")) {
                 System.exit(0);
-            } 
+            }
             //explore command - list room contents with descriptions
             else if (playerInput.equalsIgnoreCase("explore") || playerInput.equalsIgnoreCase("explore room")) {
                 /*for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
@@ -121,7 +121,7 @@ public class Main implements Serializable{
                 player.consumeItem(item, player, currentRoom);
             }
             //inspect item command
-            else if (playerInput.startsWith("inspect")) {
+            else if (playerInput.startsWith("inspect")) { //item MUST be in inventory to inspect
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
                     if (itemName.equalsIgnoreCase(item.getItemName())) {
@@ -203,15 +203,15 @@ public class Main implements Serializable{
         int health = 0;
         String rewardType = "";
         int monsterLocation = 0;
-        
+
         int healthMax = 0;
         int strength = 0;
         HashMap<String, Queue<GameItem>> inventory = new HashMap<>();
-        
+
         while (scanner.hasNextLine()) {
             String result = scanner.nextLine().trim();
             if (result.matches("^M[0-9]+")) {
-                
+
                 iD = result;
                 name = scanner.nextLine().trim();
                 desc = scanner.nextLine().trim();

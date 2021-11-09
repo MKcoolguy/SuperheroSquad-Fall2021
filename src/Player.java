@@ -69,8 +69,10 @@ public class Player extends Entity implements Serializable {
         System.out.println(item.getItemName() + " has been picked up and added to your inventory");
     }
 
-    public void inspectItem(GameItem item) {
-        if (getInventory().containsKey(item.getItemName())) {
+    public void inspectItem(Player player, String itemName) {
+        if (player.getInventory().containsKey(itemName) && getInventory() != null) {
+            GameItem item = player.getInventory().get(itemName).peek();
+            assert item != null;
             System.out.println(item.getItemDesc() + " Effect: " + item.getItemPower() + ". Type: " + item.getItemType());
         }
     }
