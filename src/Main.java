@@ -27,6 +27,7 @@ public class Main implements Serializable{
     public static void startMenu(Scanner sc) {
         UserInterface.displayStartMenu(); //game start menu launch
 
+        System.out.print("Adventure South: ");
         String playerInput = sc.nextLine();
         if (playerInput.equalsIgnoreCase("start")) {
             startGame(sc);
@@ -40,6 +41,7 @@ public class Main implements Serializable{
             }
         } else if (playerInput.equalsIgnoreCase("help")) {
             // help feature
+            UserInterface.displayHelp();
         } else if (playerInput.equalsIgnoreCase("quit")) {
             sc.close();
             System.out.println("Game aborted.");
@@ -68,6 +70,7 @@ public class Main implements Serializable{
 
         while (playGame) {
 
+            System.out.print("Command: ");
             String playerInput = sc.nextLine();
 
             //navigate rooms command
@@ -121,13 +124,14 @@ public class Main implements Serializable{
                 player.consumeItem(item, player, currentRoom);
             }
             //inspect item command
-            else if (playerInput.startsWith("inspect")) { //item MUST be in inventory to inspect
+            else if (playerInput.startsWith("inspect") || playerInput.startsWith("examine")) { //item MUST be in inventory to inspect
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
                 for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
                     if (itemName.equalsIgnoreCase(item.getItemName())) {
                         player.inspectItem(player, itemName);
                     }
                 }
+                player.inspectItem(player,itemName);
                 for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
                     if (itemName.equalsIgnoreCase(item.getItemName())) {
                         System.out.println(item.getItemDesc());
@@ -190,7 +194,6 @@ public class Main implements Serializable{
             }
 
         }
-
     }
 
     public static void readMonster() throws FileNotFoundException {

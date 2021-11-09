@@ -183,6 +183,7 @@ public class Player extends Entity implements Serializable {
             Random rand = new Random();
             //0 means flee successful
             int randNum = rand.nextInt(2);
+            System.out.print("Command: ");
             String response = sc.nextLine();
 
             if (response.equalsIgnoreCase("flee") && randNum == 0) {
@@ -200,11 +201,12 @@ public class Player extends Entity implements Serializable {
                 boolean battle = true;
 
                 while (battle) {
+                    System.out.print("Battle: ");
                     response = sc.nextLine();
-                    System.out.println(" the monster's health is " + monster.getHealth());
+                    System.out.println("The monster's health is " + monster.getHealth());
 
                     if (player.getHealth() <= 0) {   //player is dead
-                        System.out.println(" game over, you are dead");
+                        System.out.println("Game over, you are dead");
                         System.exit(0);
                     }
                     if (monster.getHealth() <= 0) {  //monster is dead
