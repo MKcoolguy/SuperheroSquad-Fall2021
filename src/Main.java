@@ -113,13 +113,9 @@ public class Main {
                 player.consumeItem(item, player, currentRoom);
             }
             //inspect item command
-            else if (playerInput.startsWith("inspect")) {
+            else if (playerInput.startsWith("inspect")) { //item MUST be in inventory to inspect
                 String itemName = playerInput.substring(playerInput.indexOf(" ")).trim(); // gets the item string of player input
-                for (GameItem item : map.getRooms().get(currentRoom).getItems()) {
-                    if (itemName.equalsIgnoreCase(item.getItemName())) {
-                        player.inspectItem(item);
-                    }
-                }
+                player.inspectItem(player,itemName);
             }
             //equip command. only works if item is not currently equipped
             else if (playerInput.startsWith("equip")) {
